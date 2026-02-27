@@ -1,30 +1,60 @@
-const projects = [
-    {
-        title: "Your Event",
-        desc: "Etkinlik keşfetme & oluşturma platformu. Mobil (Flutter) + backend.",
-    },
-    {
-        title: "PIXEL",
-        desc: "Araba odaklı sosyal platform fikri: reels, topluluklar, etkinlik haritası.",
-    },
-];
-
 export default function ProjectsPage() {
-    return (
-        <section className="space-y-6">
-            <h1 className="text-3xl md:text-4xl font-bold">Projects</h1>
-            <p className="text-white/60">
-                Üzerinde çalıştığım projeler ve kısa açıklamaları.
-            </p>
+    const projects = [
+        {
+            title: "AutoVibe",
+            description:
+                "A car-focused social media platform combining feeds, short videos, events and communities for automotive enthusiasts.",
+            stack: ["Flutter", "NestJS", "PostgreSQL"],
+        },
+        {
+            title: "YourEvent",
+            description:
+                "An event discovery and creation platform that allows people to organize, join and manage public or private events.",
+            stack: ["Flutter", "NestJS", "PostgreSQL"],
+        },
+        {
+            title: "Sanaiyi",
+            description:
+                "A location-based service comparison app that helps users find better prices and quality through ratings and reviews.",
+            stack: ["Mobile App", "Backend API", "Database"],
+        },
+    ];
 
-            <div className="grid gap-4 md:grid-cols-2">
-                {projects.map((p) => (
-                    <div key={p.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                        <h2 className="text-xl font-semibold">{p.title}</h2>
-                        <p className="mt-2 text-white/60">{p.desc}</p>
-                    </div>
-                ))}
-            </div>
-        </section>
+    return (
+        <main className="min-h-screen bg-black text-white px-6 py-24">
+            <section className="max-w-5xl mx-auto">
+                <h1 className="text-4xl md:text-5xl font-bold mb-10">
+                    Projects
+                </h1>
+
+                <div className="grid gap-8">
+                    {projects.map((project) => (
+                        <div
+                            key={project.title}
+                            className="rounded-2xl border border-white/10 p-6 hover:border-white/30 transition"
+                        >
+                            <h2 className="text-2xl font-semibold mb-2">
+                                {project.title}
+                            </h2>
+
+                            <p className="text-gray-400 mb-4 max-w-3xl">
+                                {project.description}
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                {project.stack.map((tech) => (
+                                    <span
+                                        key={tech}
+                                        className="rounded-full border border-white/20 px-3 py-1 text-xs text-white/70"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        </main>
     );
 }

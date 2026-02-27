@@ -1,15 +1,19 @@
-export default function Home() {
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6">
-      <h1 className="text-4xl md:text-6xl font-bold mb-4">
-        Ahmet Furkan Göktaş
-      </h1>
+// src/app/page.tsx
 
-      <p className="text-lg md:text-xl text-gray-400 max-w-xl text-center">
-        Computer Engineering Student · Software Developer
-        <br />
-        Articles, projects and ideas.
-      </p>
+export default function Page() {
+  return (
+    <main className="min-h-screen bg-black text-white px-6">
+      <section className="min-h-screen flex flex-col items-center justify-center text-center">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+          Ahmet Furkan Göktaş
+        </h1>
+
+        <p className="mt-5 text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed">
+          Computer Engineering Student
+          <br />
+          Articles, projects and ideas.
+        </p>
+      </section>
     </main>
   );
 }
