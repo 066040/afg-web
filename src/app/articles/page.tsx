@@ -1,9 +1,10 @@
-import Link from 'next/link';
-import { getAllArticles } from '@/lib/mdx';
+import Link from "next/link";
+import { getAllArticles } from "@/lib/mdx";
 
 export const metadata = {
-    title: 'Articles | Afurkan Goktas',
-    description: 'Read the latest articles on software engineering, Flutter, Next.js, and backend systems.',
+    title: "Articles | Ahmet Furkan Göktaş",
+    description:
+        "Articles about computer engineering, backend systems, mobile development, and building scalable applications.",
 };
 
 export default function ArticlesPage() {
@@ -14,7 +15,7 @@ export default function ArticlesPage() {
             <section className="max-w-4xl mx-auto">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Articles</h1>
                 <p className="text-gray-400 mb-10 max-w-2xl">
-                    Thoughts, learnings, and insights on software engineering.
+                    Thoughts, learnings, and notes on computer engineering, backend systems, and app development.
                 </p>
 
                 <div className="grid gap-6">
@@ -28,12 +29,13 @@ export default function ArticlesPage() {
                                 <h2 className="text-xl md:text-2xl font-semibold group-hover:text-blue-400 transition-colors">
                                     {article.title}
                                 </h2>
+
                                 <div className="text-xs text-white/50 flex gap-2">
                                     <time dateTime={article.date}>
-                                        {new Date(article.date).toLocaleDateString('en-US', {
-                                            month: 'long',
-                                            day: 'numeric',
-                                            year: 'numeric',
+                                        {new Date(article.date).toLocaleDateString("en-US", {
+                                            month: "long",
+                                            day: "numeric",
+                                            year: "numeric",
                                         })}
                                     </time>
                                     <span>•</span>
@@ -43,7 +45,9 @@ export default function ArticlesPage() {
 
                             <p className="text-gray-400 mt-2 max-w-3xl leading-relaxed">{article.description}</p>
 
-                            <div className="mt-4 text-sm text-blue-400/80 group-hover:text-blue-400 transition-colors">Read →</div>
+                            <div className="mt-4 text-sm text-blue-400/80 group-hover:text-blue-400 transition-colors">
+                                Read →
+                            </div>
                         </Link>
                     ))}
                 </div>
