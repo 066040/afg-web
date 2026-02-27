@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://afurkangoktas.com"; // <-- değiştir
+const SITE_URL = "https://afurkangoktas.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const routes = ["", "/projects", "/articles", "/contact"];

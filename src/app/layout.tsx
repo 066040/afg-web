@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://yourdomain.com"; // <-- burayı değiştir
-const SITE_NAME = "Mühendis"; // <-- istersen ad/marka
-const AUTHOR_NAME = "Mühendis"; // <-- adın/brandin
+const SITE_URL = "https://afurkangoktas.com";
+const SITE_NAME = "Afurkan Goktas";
+const AUTHOR_NAME = "Afurkan Goktas";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -87,7 +87,46 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: AUTHOR_NAME,
+              url: SITE_URL,
+              jobTitle: "Software Engineer",
+              description: "Computer Engineering student building scalable mobile and web applications. Flutter, Node.js, NestJS, PostgreSQL.",
+              sameAs: [
+                "https://github.com/afurkangoktas",
+                "https://linkedin.com/in/afurkangoktas"
+              ]
+            }),
+          }}
+        />
+      </head>
+      <body className="antialiased bg-black text-gray-100 min-h-screen flex flex-col selection:bg-blue-500/30 selection:text-blue-100">
+        <header className="w-full px-6 py-8">
+          <div className="max-w-5xl mx-auto flex items-center justify-between">
+            <a href="/" className="font-bold text-xl tracking-tighter hover:text-blue-400 transition-colors">
+              AFG.
+            </a>
+            <nav className="flex items-center gap-6 text-sm font-medium text-gray-300" aria-label="Global Navigation">
+              <a href="/projects" className="hover:text-white transition-colors">Projects</a>
+              <a href="/articles" className="hover:text-white transition-colors">Articles</a>
+            </nav>
+          </div>
+        </header>
+        <div className="flex-1 w-full">
+          {children}
+        </div>
+        <footer className="w-full border-t border-white/10 py-8 mt-auto">
+          <div className="max-w-5xl mx-auto px-6 text-center text-sm text-gray-500">
+            &copy; {new Date().getFullYear()} Afurkan Goktas. All rights reserved.
+          </div>
+        </footer>
+      </body>
     </html>
   );
 }
