@@ -130,13 +130,10 @@ export default function RootLayout({
           <div className="max-w-5xl mx-auto flex items-center justify-between">
             <a
               href="/"
-              className="inline-flex items-center gap-2 font-extrabold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors"
+              className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/70 px-4 py-2 font-extrabold text-lg tracking-tight text-slate-900 shadow-sm hover:shadow-md hover:-translate-y-[1px] hover:text-blue-700 transition"
               aria-label="Home"
             >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white/70 shadow-sm">
-                A
-              </span>
-              <span className="hidden sm:inline">AFG</span>
+              AFG
             </a>
 
             <nav
