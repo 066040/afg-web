@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ahmet Furkan Göktaş | Computer Engineer",
+  description: "Computer Engineer. Articles, projects and ideas.",
+  alternates: { canonical: "/" },
+};
 export default function Page() {
   return (
     <main className="w-full px-6">

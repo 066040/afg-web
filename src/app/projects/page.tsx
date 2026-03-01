@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'Projects | Afurkan Goktas',
+    title: 'Projects | Ahmet Furkan Göktaş',
     description: 'A selection of high-impact projects I have built.',
 };
 
