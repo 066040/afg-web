@@ -86,6 +86,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
     shortcut: "/favicon.ico",
   },
+
   manifest: "/site.webmanifest",
 };
 
@@ -112,9 +113,6 @@ export default function RootLayout({
     <html lang="en" translate="no">
       <head>
         <meta name="google" content="notranslate" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -122,6 +120,13 @@ export default function RootLayout({
       </head>
 
       <body className="antialiased bg-white text-slate-900 min-h-screen flex flex-col selection:bg-blue-500/20 selection:text-slate-900">
+        {/* Global premium light background (ALL pages) */}
+        <div className="pointer-events-none fixed inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(1200px_circle_at_20%_10%,rgba(59,130,246,0.18),transparent_55%),radial-gradient(900px_circle_at_80%_20%,rgba(99,102,241,0.14),transparent_50%),radial-gradient(900px_circle_at_50%_95%,rgba(16,185,129,0.10),transparent_55%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
+          <div className="absolute inset-0 opacity-[0.12] [background-image:radial-gradient(rgba(15,23,42,0.18)_1px,transparent_1px)] [background-size:18px_18px]" />
+        </div>
+
         {/* Top glow divider (subtle) */}
         <div className="pointer-events-none fixed inset-x-0 top-0 h-24 -z-10 bg-[radial-gradient(900px_circle_at_50%_0%,rgba(59,130,246,0.14),transparent_60%)]" />
 
@@ -175,8 +180,7 @@ export default function RootLayout({
 
             <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="text-sm text-slate-600">
-                &copy; {new Date().getFullYear()} Ahmet Furkan Göktaş. All rights
-                reserved.
+                &copy; 2026 Ahmet Furkan Göktaş. All rights reserved.
               </div>
 
               <div className="flex items-center gap-3">

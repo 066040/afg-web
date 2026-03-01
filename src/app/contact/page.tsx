@@ -49,20 +49,6 @@ export default function ContactPage() {
                             >
                                 Send Email
                             </a>
-
-                            <button
-                                type="button"
-                                onClick={async () => {
-                                    await navigator.clipboard.writeText(email);
-                                }}
-                                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition"
-                            >
-                                Copy Email
-                            </button>
-                        </div>
-
-                        <div className="mt-5 text-xs text-slate-500">
-                            Prefer email? Click the address or use “Copy Email”.
                         </div>
                     </div>
 
@@ -94,16 +80,6 @@ export default function ContactPage() {
                                     Open profile <span aria-hidden>→</span>
                                 </div>
                             </a>
-                        </div>
-
-                        <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4">
-                            <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                                Quick note
-                            </div>
-                            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                                If you’re a recruiter, feel free to include role details, tech
-                                stack, and location/remote info.
-                            </p>
                         </div>
                     </div>
                 </div>
