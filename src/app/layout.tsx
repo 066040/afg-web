@@ -114,47 +114,93 @@ export default function RootLayout({
         <meta name="google" content="notranslate" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
+
         <script
           type="application/ld+json"
-          // JSON-LD for SEO
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
 
-      <body className="antialiased bg-black text-gray-100 min-h-screen flex flex-col selection:bg-blue-500/30 selection:text-blue-100">
-        <header className="w-full px-6 py-8">
+      <body className="antialiased bg-white text-slate-900 min-h-screen flex flex-col selection:bg-blue-500/20 selection:text-slate-900">
+        {/* Top glow divider (subtle) */}
+        <div className="pointer-events-none fixed inset-x-0 top-0 h-24 -z-10 bg-[radial-gradient(900px_circle_at_50%_0%,rgba(59,130,246,0.14),transparent_60%)]" />
+
+        {/* HEADER */}
+        <header className="w-full px-6 py-6 md:py-7">
           <div className="max-w-5xl mx-auto flex items-center justify-between">
             <a
               href="/"
-              className="font-bold text-xl tracking-tighter hover:text-blue-400 transition-colors"
+              className="inline-flex items-center gap-2 font-extrabold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors"
               aria-label="Home"
             >
-              AFG
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white/70 shadow-sm">
+                A
+              </span>
+              <span className="hidden sm:inline">AFG</span>
             </a>
 
             <nav
-              className="flex items-center gap-6 text-sm font-medium text-gray-300"
+              className="flex items-center gap-2 sm:gap-3 text-sm font-semibold"
               aria-label="Global Navigation"
             >
-              <a href="/projects" className="hover:text-white transition-colors">
+              <a
+                href="/projects"
+                className="rounded-full px-4 py-2 text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition"
+              >
                 Projects
               </a>
-              <a href="/articles" className="hover:text-white transition-colors">
+              <a
+                href="/articles"
+                className="rounded-full px-4 py-2 text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition"
+              >
                 Articles
               </a>
-              <a href="/contact" className="hover:text-white transition-colors">
+              <a
+                href="/contact"
+                className="rounded-full px-4 py-2 text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition"
+              >
                 Contact
               </a>
             </nav>
           </div>
+
+          {/* subtle divider */}
+          <div className="max-w-5xl mx-auto mt-6 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
         </header>
 
+        {/* CONTENT */}
         <div className="flex-1 w-full">{children}</div>
 
-        <footer className="w-full border-t border-white/10 py-8 mt-auto">
-          <div className="max-w-5xl mx-auto px-6 text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Ahmet Furkan Göktaş. All rights
-            reserved.
+        {/* FOOTER */}
+        <footer className="w-full mt-auto">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+            <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-sm text-slate-600">
+                &copy; {new Date().getFullYear()} Ahmet Furkan Göktaş. All rights
+                reserved.
+              </div>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/066040"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/ahmet-furkan-g%C3%B6kta%C5%9F-913a44247"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </div>
           </div>
         </footer>
       </body>
