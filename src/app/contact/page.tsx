@@ -1,3 +1,5 @@
+"use client";
+
 export const metadata = {
     title: "Contact | Ahmet Furkan Göktaş",
     description:
@@ -56,7 +58,9 @@ export default function ContactPage() {
 
                             <button
                                 type="button"
-                                onClick={() => navigator.clipboard.writeText(email)}
+                                onClick={async () => {
+                                    await navigator.clipboard.writeText(email);
+                                }}
                                 className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition"
                             >
                                 Copy Email
