@@ -1,11 +1,5 @@
 "use client";
 
-export const metadata = {
-    title: "Contact | Ahmet Furkan Göktaş",
-    description:
-        "Get in touch for collaboration, internships, or project ideas. Email, GitHub, and LinkedIn.",
-};
-
 export default function ContactPage() {
     const email = "goktas.afurkan@outlook.com";
     const githubUrl = "https://github.com/066040";
