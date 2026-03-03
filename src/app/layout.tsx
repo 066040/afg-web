@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://afurkangoktas.com";
+const SITE_URL = "https://www.afurkangoktas.com";
 const SITE_NAME = "Ahmet Furkan Göktaş";
 const AUTHOR_NAME = "Ahmet Furkan Göktaş";
 
