@@ -1,0 +1,81 @@
+---
+title: "Character Movement Systems in Modern Animation"
+description: "How is movement achieved in Character Animation?"
+date: "2026-03-15"
+---
+
+## 1.	Abstract
+
+This article examines the movements of character animations and how these movements are generated. It investigates how characters achieve lifelike movements. Forward Kinematics (FK) and Inverse Kinematics (IK) are specifially analyzed, and their applications are explored. Additionally, the skeletal hierarchy, Degrees of Freedom (DOF), and necessary constraints are discussed to ensure that character movements do not lose their sense of realism. These techniques form the foundation of modern animation systems used in games, simulations, and virtual environments.
+
+## 2.	Introduction
+
+In our days, the movements of character animations have changed and continue to change, just as everything in the world is constantly changing. In the past, character movements used to be drawn frame by frame by hand. But today characters are turned into mathematical objects by computer graphics. This article was written to examine how digital characters are brought to life, moving beyond being mere images.
+
+## 3.	Main Body / Methodology
+
+How is movement achieved? And which methodologies are used for movements?
+
+### 3.1.	Skeletal Hierarchy
+
+The starting point of movement is the skeleton. We can begin by thinking of  the character not as a mass but as interconnected rigid bodies. This implies the movement of bones and joints.
+
+### 3.2.	Degrees of Freedom (DOF)
+
+Degrees of freedom defines the limits of movement. Each joint has a bending limit, and if these mathematical constraints are not followed to, any part of the character can rotate up to 360 degrees, and reality is completely lost.
+
+### 3.3.	Kinematic Computation
+
+This section explains how movement is calculated.
+
+#### 3.3.1.	 Forward Kinematics (FK):
+ Briefly described, From Angles to Position. The animator determines the angle of each joint, and the computer uses trigonometry to calculate where the end point will be.
+
+#### 3.3.2.	 Inverse Kinematics (IK):
+ Unlike Forward Kinematics, it works From Position to Angles. It is the most modern method, but critical for ensuring character movements. It attempts to calculate the angles of other parts connected to a character based on the coordinates of one part of the character.
+Since Inverse Kinematics does not involve fixing a single point, the angles are automatically calculated by the computer using numerical methods such as the Jacobian Matrix.
+
+
+## 4.	Discussion
+
+Although kinematic methods and skeleton hierarchies form the mathematical basis of a character’s movement, we still face some practical challenges. 
+
+### 4.1.	Balancing Speed and Realism
+While Inverse Kinematics is the most modern method, it creates computational costs for the movements of complex characters. For example, Jacobian Matrix-based solutions require iterative calculations in each frame, causing performance issues in real-time applications(e.g. video games). Therefore, a balance must be struck between analytical and numerical solutions depending on the purpose of the animation.
+Restricting movement is not always good, but it is necessary. This is because unrestricted movement distorts the perception of realism.
+
+## 5.	Conclusion
+
+In conclusion, movement is not merely a skeleton. It is a synthesis of kinematic and biomechanical rules.
+To ensure the realism of movement, we must strike a balance between mathematical and anatomical constraints.
+In the future, making these mathematical processes more autonomous through artificial intelligence and physics-based simulations will enable digital characters to be much more lifelike and responsive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## REFERENCES
+1.	Aristidou, A., et al. (2018). Inverse Kinematics: Techniques and Applications. Surveys in Computer Graphics.
+2.	Gülbay, B. (2026). Course Lectures: Character Animation (Weeks 2-4). [OSTIM Technical University / Engineering Department].
+3.	Kavan, L., et al. (2007). Skinning with Dual Quaternions. ACM Transactions on Graphics (TOG).
+4.	Parent, R. (2012). Computer Animation: Algorithms and Techniques. Morgan Kaufmann.
+
