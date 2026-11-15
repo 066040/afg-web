@@ -34,7 +34,13 @@ export default function ProjectDetail({ p, lang }: { p: Project; lang: Lang }) {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <ProjectVisual project={p} lang={lang} priority sizes="(min-width: 1280px) 1200px, 100vw" className="!aspect-[16/9]" />
         {c.captions?.[0] && p.media[0] && (
-          <p className="mono mt-3 text-[11px] text-ink-3">{c.captions[0]}</p>
+          <p className="mono mt-3 text-[11px] text-ink-3">FIG. 01 — {c.captions[0]}</p>
+        )}
+        {c.notes?.[0] && (
+          <div className="mt-6 grid gap-2 border-l-2 border-signal pl-5 md:max-w-3xl">
+            <h3 className="wide text-lg font-extrabold">{c.notes[0].title}</h3>
+            <p className="leading-relaxed text-ink-2">{c.notes[0].text}</p>
+          </div>
         )}
       </div>
 
@@ -102,30 +108,44 @@ export default function ProjectDetail({ p, lang }: { p: Project; lang: Lang }) {
       </div>
 
       {gallery.length > 0 && (
-        <div className="mx-auto grid max-w-7xl gap-6 px-5 pb-20 md:grid-cols-2 md:px-8">
+        <section className="mx-auto max-w-7xl space-y-16 px-5 pb-24 md:space-y-24 md:px-8">
+          <h2 className="mono border-b border-line pb-4 text-[11px] tracking-[0.25em] text-signal">{t.gallery}</h2>
           {gallery.map((m, n) => {
-            const cap = c.captions?.[n + 1] ?? p.title;
+            const idx = n + 1;
+            const cap = c.captions?.[idx] ?? p.title;
+            const note = c.notes?.[idx];
             return (
-              <figure key={m.src} className="reveal">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] border border-line bg-panel">
+              <figure
+                key={m.src}
+                className={`reveal grid items-center gap-6 lg:grid-cols-12 lg:gap-12 ${n % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}
+              >
+                <div className="relative overflow-hidden rounded-[4px] border border-line bg-panel lg:col-span-8">
                   {m.type === "image" ? (
-                    <Image src={m.src} alt={cap} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-contain" />
-                  ) : (
-                    <video
+                    <Image
                       src={m.src}
-                      poster={m.poster}
-                      controls
-                      playsInline
-                      preload="metadata"
-                      className="absolute inset-0 h-full w-full object-cover"
+                      alt={cap}
+                      width={1600}
+                      height={1000}
+                      sizes="(min-width: 1024px) 66vw, 100vw"
+                      className="block h-auto w-full"
                     />
+                  ) : (
+                    <video src={m.src} poster={m.poster} controls playsInline preload="metadata" className="block h-auto w-full" />
                   )}
+                  <Marks />
                 </div>
-                <figcaption className="mono mt-3 text-[11px] text-ink-3">{cap}</figcaption>
+                <figcaption className="lg:col-span-4">
+                  <div className="mono text-[11px] tracking-[0.2em] text-ink-3">
+                    FIG. {String(idx + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="wide mt-3 text-xl font-extrabold md:text-2xl">{note?.title ?? cap}</h3>
+                  {note && <p className="mt-3 leading-relaxed text-ink-2">{note.text}</p>}
+                  {note && <p className="mono mt-4 text-[11px] text-ink-3">{cap}</p>}
+                </figcaption>
               </figure>
             );
           })}
-        </div>
+        </section>
       )}
 
       <Link href={`${b}/projects/${next.slug}`} className="group block border-t border-line transition hover:bg-bg-2">

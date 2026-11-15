@@ -13,6 +13,8 @@ type Copy = {
   spec: [string, string][];
   /** caption / alt text for each media item, in order */
   captions?: string[];
+  /** Optional longer explanation per media item (same order as media). */
+  notes?: { title: string; text: string }[];
 };
 
 export type Media =
@@ -84,6 +86,14 @@ export const PROJECTS: Project[] = [
         "Schematic: power, charging, RTC, display, inputs and outputs",
         "PixelTime web app — sign-up screen",
       ],
+      notes: [
+        { title: "Prototype on the bench", text: "The firmware running on a 2.25\" bar-type TFT before the PCB: big pixel-font clock, the day carousel and a progress bar for the current session." },
+        { title: "Top side: the user interface", text: "Four tactile switches for minus / plus / OK and reset, the FPC connector for the display, a passive buzzer and the vibration motor driver — everything the user touches sits on this side." },
+        { title: "Bottom side: brains and power", text: "ESP32-C3-MINI module with its antenna kept clear of copper, USB-C with ESD protection, TP4056 Li-ion charger with DW01A + FS8205 protection, a 3.3 V LDO and the RV-3028 RTC so time survives without Wi-Fi." },
+        { title: "Routing", text: "Two-layer board routed in KiCad 10 with ground pours on both sides, mounting holes in each corner and the antenna area pushed to the edge for range." },
+        { title: "Schematic", text: "Battery path with load switch and reverse protection, VBAT sensing through a divider into the ADC, encoder-style buttons with RC debounce, I²C for the RTC, SPI for the display, transistor-driven motor and buzzer, and a level-shifted RGB LED." },
+        { title: "The web app", text: "Sessions from the watch land here: portraits, collection, teams and leaderboards. Works offline and installs as an app." },
+      ],
     },
     tr: {
       tagline: "Kesintisiz geçen her 25 dakika, gizli bir portrenin bir karesini açar.",
@@ -111,6 +121,14 @@ export const PROJECTS: Project[] = [
         "KiCad'de PCB yerleşimi",
         "Şema: güç, şarj, RTC, ekran, giriş ve çıkışlar",
         "PixelTime web uygulaması — kayıt ekranı",
+      ],
+      notes: [
+        { title: "Tezgâhta prototip", text: "PCB'den önce 2,25\" uzun TFT ekranda çalışan firmware: büyük piksel fontlu saat, gün kaydırması ve o anki oturumun ilerleme çubuğu." },
+        { title: "Üst yüz: kullanıcı arayüzü", text: "Eksi / artı / OK ve reset için dört düğme, ekranın FPC konnektörü, pasif buzzer ve titreşim motoru sürücüsü — kullanıcının dokunduğu her şey bu yüzde." },
+        { title: "Alt yüz: beyin ve güç", text: "Anteni bakırdan uzak tutulmuş ESP32-C3-MINI modülü, ESD korumalı USB-C, DW01A + FS8205 korumalı TP4056 Li-ion şarj devresi, 3,3 V LDO ve Wi-Fi olmadan da saati tutan RV-3028 RTC." },
+        { title: "Yerleşim", text: "KiCad 10'da iki katmanlı kart; iki yüzde de toprak dolgusu, köşelerde montaj delikleri ve menzil için kenara itilmiş anten bölgesi." },
+        { title: "Şema", text: "Yük anahtarı ve ters akım korumalı batarya yolu, gerilim bölücüyle ADC'den batarya ölçümü, RC filtreli düğmeler, RTC için I²C, ekran için SPI, transistörle sürülen motor ve buzzer, seviye dönüştürücülü RGB LED." },
+        { title: "Web uygulaması", text: "Saatten gelen oturumlar buraya düşer: portreler, koleksiyon, ekipler ve sıralamalar. İnternetsiz çalışır, uygulama olarak kurulur." },
       ],
     },
   },
@@ -183,7 +201,12 @@ export const PROJECTS: Project[] = [
     track: "automotive",
     stack: ["JavaScript", "Canvas", "Traffic modelling"],
     links: [{ kind: "source", href: `${GH}/akis-trafik-simulator` }],
-    media: [],
+    media: [
+      { type: "image", src: "/work/akis-sim.webp" },
+      { type: "image", src: "/work/akis-scenarios.webp" },
+      { type: "image", src: "/work/akis-learn.webp" },
+      { type: "image", src: "/work/akis-weather.webp" },
+    ],
     featured: true,
     en: {
       tagline: "Why city traffic jams — and what actually clears it.",
@@ -197,11 +220,24 @@ export const PROJECTS: Project[] = [
         "Toggle each measure separately to see exactly what it gains",
         "Weather changes speed, following distance and braking",
         "Compares travel time, mean speed, throughput, hard brakes and stops",
+        "In one rainy evening-peak run: same travel time, +56% mean speed, +20% throughput, −44% hard brakes, −49% stopped cars",
       ],
       spec: [
         ["Scenarios", "16"],
         ["Lanes", "50 · 70 · 90 km/h"],
         ["Metrics", "5 compared live"],
+      ],
+      captions: [
+        "Evening peak on a 3 km, 5-lane corridor in the rain — current vs proposed",
+        "The 16 ready-made scenarios",
+        "Learn: why one fix is never enough",
+        "Learn: weather values and what drivers and cities can do",
+      ],
+      notes: [
+        { title: "Two roads, same cars", text: "Top: today's habits. Bottom: the proposed layout. Both get identical traffic and the same incidents. The bottleneck's capacity doesn't change, but the flow does — the panel on the right compares travel time, speed, throughput, hard brakes and stopped cars live." },
+        { title: "16 scenarios", text: "Big corridors, bridge junctions, last-second exits, crashes in different lanes, broken-down cars, road works, rain, snow and fog — searchable and filterable by road type, incident and weather." },
+        { title: "Why it jams", text: "Congestion starts where a ramp joins, where exiting cars cut across lanes and where the road narrows — and each queue feeds the next. Speed-based lanes, right-turn pockets, zipper merging, variable limits and ramp metering each answer one of these; the simulator shows they only really work together." },
+        { title: "Weather and practical advice", text: "Speed, following time and maximum braking change per weather type based on published capacity studies. The page ends with plain do's and don'ts for drivers and what cities can actually build." },
       ],
     },
     tr: {
@@ -216,11 +252,24 @@ export const PROJECTS: Project[] = [
         "Her önlem ayrı açılıp kapatılır, neyin ne kazandırdığı görülür",
         "Hava; hızı, takip mesafesini ve frenlemeyi değiştirir",
         "Yolculuk süresi, ortalama hız, geçen araç, sert fren ve duran araç karşılaştırılır",
+        "Yağmurlu akşam zirvesi denemesinde: yolculuk süresi aynı, ortalama hız +%56, geçen araç +%20, sert fren −%44, duran araç −%49",
       ],
       spec: [
         ["Senaryo", "16"],
         ["Şeritler", "50 · 70 · 90 km/s"],
         ["Ölçüm", "5 değer canlı"],
+      ],
+      captions: [
+        "Yağmurda 3 km, 5 şeritli koridorda akşam zirvesi — mevcut ve önerilen",
+        "Hazır 16 senaryo",
+        "Öğren: neden tek bir çözüm yetmez",
+        "Öğren: hava değerleri, sürücülerin ve şehirlerin yapabilecekleri",
+      ],
+      notes: [
+        { title: "Aynı araçlar, iki yol", text: "Üstte bugünkü alışkanlıklar, altta önerilen düzen. İkisine de aynı trafik ve aynı olaylar giriyor. Darboğazın kapasitesi değişmiyor ama akışın kalitesi değişiyor — sağdaki panel yolculuk süresi, hız, geçen araç, sert fren ve duran aracı canlı karşılaştırıyor." },
+        { title: "16 senaryo", text: "Büyük koridorlar, köprülü kavşaklar, son anda çıkışlar, farklı şeritlerde kazalar, arızalı araç, yol çalışması, yağmur, kar ve sis — yol tipine, olaya ve havaya göre aranıp filtrelenebiliyor." },
+        { title: "Neden sıkışır?", text: "Sıkışma bağlanan yolun katıldığı yerde, çıkışa yönelenlerin şerit kestiği yerde ve yolun daraldığı yerde başlar; her kuyruk diğerini besler. Hıza göre şerit, sağa dönüş cebi, fermuar birleşme, değişken hız limiti ve rampa ışığı bunlardan birine cevap veriyor; simülasyon gerçek etkinin ancak birlikte çıktığını gösteriyor." },
+        { title: "Hava ve pratik öneriler", text: "Hız, takip süresi ve en sert fren her hava için yayımlanmış kapasite çalışmalarına göre değişiyor. Sayfa, sürücüler için sade yapılmalı / yapılmamalılar ve şehirlerin gerçekten yapabileceklerle bitiyor." },
       ],
     },
   },
