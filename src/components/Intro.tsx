@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 /*
   IGNITION — the AFG intro.
-  An instrument cluster wakes up: boot log, needle sweep to the stop and
-  back to 178. 1·7·8 are A·F·G by Turkish alphabet position. Then the name.
+  An instrument cluster wakes up: boot log, then the needle self-test —
+  sweep to the stop and back to zero, like a real car on ignition. Then the name.
   Plays once per browser session. Any key / click on "Skip" ends it.
 */
 
@@ -17,7 +17,7 @@ const START = 135; // degrees, SVG coords (clockwise from +x)
 const SWEEP = 270;
 
 const BOOT = [
-  ["AFG-ECU", "rev 1.78"],
+  ["AFG-ECU", "rev 1.0"],
   ["CAN0 500 kbit/s", "OK"],
   ["GPS fix", "3D"],
   ["SENSORS", "OK"],
@@ -42,12 +42,13 @@ function arcPath(v0: number, v1: number, r: number) {
   return `M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1}`;
 }
 
-type Phase = "boot" | "sweep" | "code" | "name" | "exit" | "done";
+type Phase = "boot" | "sweep" | "name" | "exit" | "done";
 
 export default function Intro() {
   const [phase, setPhase] = useState<Phase>("boot");
   const [value, setValue] = useState(0);
   const [lines, setLines] = useState(0);
+  const [sub, setSub] = useState("COMPUTER ENGINEER · ANKARA");
   const timers = useRef<number[]>([]);
   const raf = useRef<number>(0);
 
@@ -79,6 +80,7 @@ export default function Intro() {
 
     const at = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
 
+    if (window.location.pathname.startsWith("/tr")) at(0, () => setSub("BİLGİSAYAR MÜHENDİSİ · ANKARA"));
     BOOT.forEach((_, i) => at(120 + i * 110, () => setLines(i + 1)));
 
     at(700, () => {
@@ -89,18 +91,17 @@ export default function Intro() {
       const tick = (now: number) => {
         const t = now - t0;
         if (t < UP) setValue(MAX * ease.inOut(t / UP));
-        else if (t < UP + DOWN) setValue(MAX - (MAX - 178) * ease.out((t - UP) / DOWN));
+        else if (t < UP + DOWN) setValue(MAX - MAX * ease.inOut((t - UP) / DOWN));
         else {
-          setValue(178);
+          setValue(0);
           return;
         }
         raf.current = requestAnimationFrame(tick);
       };
       raf.current = requestAnimationFrame(tick);
     });
-    at(2550, () => setPhase("code"));
-    at(3250, () => setPhase("name"));
-    at(4450, finish);
+    at(2500, () => setPhase("name"));
+    at(3800, finish);
 
     const onKey = () => finish();
     window.addEventListener("keydown", onKey);
@@ -115,7 +116,6 @@ export default function Intro() {
 
   const shown = Math.round(value);
   const digits = String(shown).padStart(3, "0").split("");
-  const showCode = phase === "code" || phase === "name" || phase === "exit";
   const showName = phase === "name" || phase === "exit";
 
   const ticks = [];
@@ -233,22 +233,11 @@ export default function Intro() {
               {digits.map((d, i) => (
                 <div key={i} className="flex flex-col items-center">
                   <span className="mono text-5xl font-semibold tabular-nums text-ink md:text-6xl">{d}</span>
-                  <span
-                    className="wide mt-1 text-sm font-bold text-signal"
-                    style={{
-                      opacity: showCode ? 1 : 0,
-                      transform: showCode ? "none" : "translateY(-6px)",
-                      transition: `all .4s ${i * 0.12}s ease`,
-                    }}
-                  >
-                    {"AFG"[i]}
-                  </span>
                 </div>
               ))}
             </div>
             <span
               className="mono mt-1 text-[11px] tracking-[0.3em] text-ink-3"
-              style={{ opacity: showCode ? 0 : 1, transition: "opacity .3s" }}
             >
               KM/H
             </span>
@@ -283,7 +272,7 @@ export default function Intro() {
             className="mono mt-5 text-[11px] tracking-[0.35em] text-ink-2 md:text-xs"
             style={{ opacity: showName ? 1 : 0, transition: "opacity .6s .6s" }}
           >
-            1 · 7 · 8 &nbsp;=&nbsp; A · F · G
+            {sub}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-export default function ReplayIntro() {
+export default function ReplayIntro({ label, home }: { label: string; home: string }) {
   return (
     <button
       type="button"
@@ -8,12 +8,11 @@ export default function ReplayIntro() {
         try {
           sessionStorage.removeItem("afg-intro");
         } catch {}
-        window.scrollTo(0, 0);
-        window.location.href = "/";
+        window.location.href = home;
       }}
       className="mono text-[11px] tracking-[0.2em] text-ink-3 transition hover:text-signal"
     >
-      ↻ REPLAY IGNITION
+      {label}
     </button>
   );
 }

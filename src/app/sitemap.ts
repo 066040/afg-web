@@ -4,9 +4,11 @@ import { SITE } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return [
-    { url: SITE.url, lastModified: now, priority: 1 },
-    { url: `${SITE.url}/projects`, lastModified: now, priority: 0.8 },
-    ...PROJECTS.map((p) => ({ url: `${SITE.url}/projects/${p.slug}`, lastModified: now, priority: 0.6 })),
-  ];
+  const paths = ["", "/projects", ...PROJECTS.map((p) => `/projects/${p.slug}`)];
+  return paths.map((path) => ({
+    url: `${SITE.url}${path || "/"}`,
+    lastModified: now,
+    priority: path === "" ? 1 : path === "/projects" ? 0.8 : 0.6,
+    alternates: { languages: { en: `${SITE.url}${path || "/"}`, tr: `${SITE.url}/tr${path}` } },
+  }));
 }

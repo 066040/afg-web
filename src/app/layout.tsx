@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import Link from "next/link";
 import "./globals.css";
 import Intro from "@/components/Intro";
 import Reveal from "@/components/Reveal";
-import ReplayIntro from "@/components/ReplayIntro";
+import { Footer, Header } from "@/components/Chrome";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
     default: `${SITE.name} — Embedded & Automotive Software`,
     template: `%s — ${SITE.name}`,
   },
-  description: SITE.description,
+  description: SITE.description.en,
   applicationName: SITE.name,
   keywords: [
     "Ahmet Furkan Göktaş",
@@ -23,7 +22,6 @@ export const metadata: Metadata = {
     "ESP32",
     "CAN Bus",
     "Vehicle Telemetry",
-    "Garaj178",
     "Ankara",
   ],
   authors: [{ name: SITE.name, url: SITE.url }],
@@ -35,13 +33,13 @@ export const metadata: Metadata = {
     url: SITE.url,
     siteName: SITE.name,
     title: `${SITE.name} — Embedded & Automotive Software`,
-    description: SITE.description,
+    description: SITE.description.en,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} — Embedded & Automotive Software`,
-    description: SITE.description,
+    description: SITE.description.en,
   },
   icons: {
     icon: "/favicon.ico",
@@ -58,13 +56,6 @@ export const viewport: Viewport = {
 // Runs before paint: skip the intro for this session / reduced motion.
 const introGate = `try{var h=document.documentElement;if(sessionStorage.getItem('afg-intro')==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches){h.classList.add('intro-seen','site-on')}}catch(e){}`;
 
-const NAV = [
-  { href: "/#work", label: "Work" },
-  { href: "/projects", label: "Index" },
-  { href: "/#garage", label: "Garage" },
-  { href: "/#contact", label: "Contact" },
-];
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -74,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     jobTitle: "Computer Engineer",
     alumniOf: "OSTIM Technical University",
     address: { "@type": "PostalAddress", addressLocality: "Ankara", addressCountry: "TR" },
-    sameAs: [SITE.github, SITE.linkedin, SITE.youtube],
+    sameAs: [SITE.github, SITE.linkedin],
   };
 
   return (
@@ -95,60 +86,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Intro />
         <Reveal />
 
-        <header className="sticky top-0 z-50 border-b border-line/70 bg-bg/80 backdrop-blur-md">
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
-            <Link href="/" aria-label="Home" className="group flex items-baseline gap-2">
-              <span className="wide text-xl font-black tracking-tight">AFG</span>
-              <span className="mono text-[11px] text-ink-3 transition group-hover:text-signal">/178</span>
-            </Link>
-
-            <nav aria-label="Main" className="flex items-center gap-1 text-sm">
-              {NAV.map((n) => (
-                <Link
-                  key={n.href}
-                  href={n.href}
-                  className={`rounded-full px-3 py-1.5 text-ink-2 transition hover:text-ink md:px-4 ${
-                    n.label === "Index" ? "hidden sm:block" : ""
-                  }`}
-                >
-                  {n.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="mono hidden items-center gap-2 text-[11px] text-ink-2 lg:flex">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-ok" />
-              </span>
-              {SITE.status}
-            </div>
-          </div>
-        </header>
-
+        <Header />
         <div className="flex-1">{children}</div>
-
-        <footer className="border-t border-line">
-          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 md:grid-cols-3 md:items-end md:px-8">
-            <div>
-              <div className="wide text-2xl font-black">AFG</div>
-              <p className="mono mt-2 text-[11px] leading-relaxed text-ink-3">
-                DESIGNED &amp; BUILT BY AHMET FURKAN GÖKTAŞ
-                <br />
-                ANKARA · 39.93°N 32.86°E · © {new Date().getFullYear()}
-              </p>
-            </div>
-            <div className="mono flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink-2 md:justify-center">
-              <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="hover:text-signal">GitHub</a>
-              <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-signal">LinkedIn</a>
-              <a href={SITE.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-signal">YouTube</a>
-              <a href={`mailto:${SITE.email}`} className="hover:text-signal">Email</a>
-            </div>
-            <div className="md:text-right">
-              <ReplayIntro />
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

@@ -29,7 +29,7 @@ export default async function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#6b7078", letterSpacing: 4 }}>
-          <span style={{ color: "#ff8a1f" }}>AFG / 178</span>
+          <span style={{ color: "#ff8a1f" }}>AFG</span>
           <span>ANKARA · TR</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -39,7 +39,7 @@ export default async function OpenGraphImage() {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#a3a6ab" }}>
-          <span>Embedded systems · Vehicle telemetry · Software</span>
+          <span>Embedded systems · Automotive · Software</span>
           <span style={{ color: "#ece9e3" }}>afurkangoktas.com</span>
         </div>
       </div>
