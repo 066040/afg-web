@@ -369,7 +369,12 @@ export const PROJECTS: Project[] = [
       { kind: "live", href: "https://066040.github.io/old-car-telemetry/" },
       { kind: "source", href: `${GH}/old-car-telemetry` },
     ],
-    media: [],
+    media: [
+      { type: "image", src: "/work/oct-cover.webp" },
+      { type: "image", src: "/work/oct-drive.webp" },
+      { type: "image", src: "/work/oct-fuel.webp" },
+      { type: "image", src: "/work/oct-eds.webp" },
+    ],
     en: {
       tagline: "A digital dashboard for old cars without OBD. No wires.",
       summary:
@@ -387,6 +392,18 @@ export const PROJECTS: Project[] = [
         ["For", "Pre-OBD cars"],
         ["Display", "Any old phone"],
         ["Next", "ESP32 sensor box over BLE"],
+      ],
+      captions: [
+        "Drive, Fuel and Average-speed tabs on a phone",
+        "Drive: live speed, trip average, distance, time and max",
+        "Fuel: fill-up log and real consumption",
+        "Average-speed corridors: save on the road or add by coordinates",
+      ],
+      notes: [
+        { title: "One page, four tabs", text: "A single HTML file that runs in the phone's browser and installs to the home screen. Big, high-contrast numbers on black so it reads at a glance while driving." },
+        { title: "Drive", text: "Speed comes from the GPS Doppler reading, not from position jumps, so it stays steady. A trip starts by itself after a few seconds above 10 km/h and saves after five minutes stopped; data is written every 10 seconds so nothing is lost if the phone dies." },
+        { title: "Fuel", text: "Fill the tank, enter the litres and, optionally, the odometer. Consumption is calculated between two full fills — from the odometer if you gave it, otherwise from the distance the app measured." },
+        { title: "Average-speed corridors", text: "Save a corridor's start while you drive, or paste start and end coordinates from Google Maps. On entry the app opens a panel with the running average and a voice warning, and the suggested speed never goes above the posted limit." },
       ],
     },
     tr: {
@@ -406,6 +423,18 @@ export const PROJECTS: Project[] = [
         ["Hedef", "OBD öncesi araçlar"],
         ["Ekran", "Herhangi bir eski telefon"],
         ["Sırada", "BLE ile ESP32 sensör kutusu"],
+      ],
+      captions: [
+        "Telefonda Sürüş, Yakıt ve EDS sekmeleri",
+        "Sürüş: anlık hız, ortalama, mesafe, süre ve maksimum",
+        "Yakıt: dolum kaydı ve gerçek tüketim",
+        "EDS koridorları: yolda kaydet ya da koordinatla ekle",
+      ],
+      notes: [
+        { title: "Tek sayfa, dört sekme", text: "Telefonun tarayıcısında çalışan ve ana ekrana eklenebilen tek bir HTML dosyası. Sürerken bir bakışta okunsun diye siyah üzerinde büyük, yüksek kontrastlı rakamlar." },
+        { title: "Sürüş", text: "Hız, konum farkından değil GPS'in Doppler ölçümünden geliyor; bu yüzden zıplamıyor. Yolculuk 10 km/s üstünde birkaç saniye sonra kendiliğinden başlıyor, beş dakika durunca kaydediliyor; veriler her 10 saniyede yazıldığı için telefon kapansa da kaybolmuyor." },
+        { title: "Yakıt", text: "Depoyu doldur, litreyi ve istersen kilometre sayacını gir. Tüketim iki tam dolum arasında hesaplanıyor — sayacı girdiysen ondan, girmediysen uygulamanın ölçtüğü mesafeden." },
+        { title: "Ortalama hız koridorları (EDS)", text: "Koridorun başlangıcını sürerken kaydet ya da Google Haritalar'dan başlangıç ve bitiş koordinatını yapıştır. Koridora girince anlık ortalamayı gösteren bir panel ve sesli uyarı açılıyor; önerilen hız asla tabeladaki limiti geçmiyor." },
       ],
     },
   },

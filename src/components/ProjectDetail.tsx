@@ -127,7 +127,7 @@ export default function ProjectDetail({ p, lang }: { p: Project; lang: Lang }) {
                       width={1600}
                       height={1000}
                       sizes="(min-width: 1024px) 66vw, 100vw"
-                      className="block h-auto w-full"
+                      className="mx-auto block h-auto max-h-[75vh] w-auto max-w-full"
                     />
                   ) : (
                     <video src={m.src} poster={m.poster} controls playsInline preload="metadata" className="block h-auto w-full" />
