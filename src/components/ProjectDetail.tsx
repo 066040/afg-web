@@ -114,19 +114,22 @@ export default function ProjectDetail({ p, lang }: { p: Project; lang: Lang }) {
             const idx = n + 1;
             const cap = c.captions?.[idx] ?? p.title;
             const note = c.notes?.[idx];
+            const wide = m.type === "image" && m.wide;
             return (
               <figure
                 key={m.src}
-                className={`reveal grid items-center gap-6 lg:grid-cols-12 lg:gap-12 ${n % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}
+                className={`reveal grid items-center gap-6 lg:grid-cols-12 lg:gap-12 ${
+                  wide ? "" : n % 2 ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
               >
-                <div className="relative overflow-hidden rounded-[4px] border border-line bg-panel lg:col-span-8">
+                <div className={`relative overflow-hidden rounded-[4px] border border-line bg-panel ${wide ? "lg:col-span-12" : "lg:col-span-8"}`}>
                   {m.type === "image" ? (
                     <Image
                       src={m.src}
                       alt={cap}
                       width={1600}
                       height={1000}
-                      sizes="(min-width: 1024px) 66vw, 100vw"
+                      sizes={wide ? "100vw" : "(min-width: 1024px) 66vw, 100vw"}
                       className="mx-auto block h-auto max-h-[75vh] w-auto max-w-full"
                     />
                   ) : (
@@ -134,7 +137,7 @@ export default function ProjectDetail({ p, lang }: { p: Project; lang: Lang }) {
                   )}
                   <Marks />
                 </div>
-                <figcaption className="lg:col-span-4">
+                <figcaption className={wide ? "lg:col-span-8" : "lg:col-span-4"}>
                   <div className="mono text-[11px] tracking-[0.2em] text-ink-3">
                     FIG. {String(idx + 1).padStart(2, "0")}
                   </div>

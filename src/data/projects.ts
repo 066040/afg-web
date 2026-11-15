@@ -18,7 +18,7 @@ type Copy = {
 };
 
 export type Media =
-  | { type: "image"; src: string }
+  | { type: "image"; src: string; wide?: boolean }
   | { type: "video"; src: string; poster?: string };
 
 export type Project = {
@@ -454,7 +454,12 @@ export const PROJECTS: Project[] = [
     track: "embedded",
     stack: ["C++", "RabbitMQ", "ChromaDB", "Ollama", "Docker"],
     links: [{ kind: "source", href: `${GH}/FactoryMind` }],
-    media: [{ type: "image", src: "/work/factorymind-diagram.webp" }],
+    media: [
+      { type: "image", src: "/work/factorymind-diagram.webp" },
+      { type: "image", src: "/work/factorymind-run.webp", wide: true },
+      { type: "image", src: "/work/factorymind-rabbitmq.webp" },
+      { type: "image", src: "/work/factorymind-docker.webp" },
+    ],
     en: {
       tagline: "Predictive maintenance: edge sensor to root cause in one pipeline.",
       summary:
@@ -464,15 +469,24 @@ export const PROJECTS: Project[] = [
       highlights: [
         "C++17 edge sensor (rabbitmq-c): limits of 90 °C and 7.1 mm/s with hysteresis, so one noisy reading can't fire twice",
         "RabbitMQ decouples the sensor from the AI worker",
-        "Local RAG over repair notes + on-prem LLM diagnosis",
+        "Notes filtered per machine and per exceeded reading in code, then local RAG + on-prem LLM diagnosis",
       ],
       spec: [
         ["Edge", "C++ / AMQP"],
         ["Broker", "RabbitMQ"],
         ["AI", "Local only"],
       ],
-      captions: ['System diagram: alarm to root cause'],
-      notes: [{ title: 'Alarm to root cause', text: 'A C++ edge sensor checks three machines against their limits and publishes a JSON alarm over AMQP only when one is crossed. RabbitMQ buffers the alarms; a worker pulls each alarm, retrieves similar past cases from technician notes in ChromaDB and asks a local Qwen2.5 model through Ollama for the likely root cause and next steps.' }],
+      captions: [
+        "System diagram: alarm to root cause",
+        "A real run: CNC-02 overheats, the matching note is found, the model answers",
+        "RabbitMQ management: alarms flowing from the sensor to the AI worker",
+        "The whole stack started with one docker compose command",
+      ],
+      notes: [{ title: 'Alarm to root cause', text: 'A C++ edge sensor checks three machines against their limits and publishes a JSON alarm over AMQP only when one is crossed. RabbitMQ buffers the alarms; a worker pulls each alarm, retrieves similar past cases from technician notes in ChromaDB and asks a local Qwen2.5 model through Ollama for the likely root cause and next steps.' },
+        { title: "One alarm, end to end", text: "CNC-02 crosses 90 °C. The worker looks only at CNC-02's notes and, because temperature is the reading over its limit, keeps only the temperature note — that filtering is done in code, not left to the model. The local Qwen2.5 model then turns the note into a root cause and an action: check coolant level and look for a leak." },
+        { title: "The broker in between", text: "RabbitMQ decouples the C++ sensor from the AI worker: the sensor publishes and moves on, the worker consumes at its own pace. The management UI shows the publish and deliver rates rising as alarms arrive." },
+        { title: "One command", text: "RabbitMQ, the Python worker and the C++ sensor build and start together with docker compose up; Ollama runs on the host. The sensor is compiled inside its own Debian image, so nothing needs installing on the machine." },
+      ],
     },
     tr: {
       tagline: "Kestirimci bakım: sahadaki sensörden kök nedene tek hat.",
@@ -483,15 +497,24 @@ export const PROJECTS: Project[] = [
       highlights: [
         "C++17 uç sensör (rabbitmq-c): 90 °C ve 7,1 mm/s sınırları, histerezisle tek bir gürültülü ölçüm iki kez alarm vermez",
         "RabbitMQ sensörü yapay zekâ işçisinden ayırır",
-        "Tamir notları üzerinde yerel RAG + yerel LLM teşhisi",
+        "Notlar kodda makineye ve aşılan ölçüme göre süzülüyor, sonra yerel RAG + yerel LLM teşhisi",
       ],
       spec: [
         ["Uç", "C++ / AMQP"],
         ["Kuyruk", "RabbitMQ"],
         ["Yapay zekâ", "Sadece yerel"],
       ],
-      captions: ['Sistem şeması: alarmdan kök nedene'],
-      notes: [{ title: 'Alarmdan kök nedene', text: "C++ uç sensör üç makineyi sınırlarına göre izliyor ve yalnızca bir sınır aşılınca AMQP ile JSON alarm yayınlıyor. RabbitMQ alarmları ara bellekte tutuyor; bir işçi her alarmı çekip ChromaDB'deki teknisyen notlarından benzer eski vakaları buluyor ve Ollama üzerindeki yerel Qwen2.5 modelinden olası kök nedeni ve yapılacakları istiyor." }],
+      captions: [
+        "Sistem şeması: alarmdan kök nedene",
+        "Gerçek bir çalışma: CNC-02 ısınıyor, uygun not bulunuyor, model cevap veriyor",
+        "RabbitMQ yönetim paneli: sensörden yapay zekâ işçisine akan alarmlar",
+        "Tüm sistem tek bir docker compose komutuyla ayakta",
+      ],
+      notes: [{ title: 'Alarmdan kök nedene', text: "C++ uç sensör üç makineyi sınırlarına göre izliyor ve yalnızca bir sınır aşılınca AMQP ile JSON alarm yayınlıyor. RabbitMQ alarmları ara bellekte tutuyor; bir işçi her alarmı çekip ChromaDB'deki teknisyen notlarından benzer eski vakaları buluyor ve Ollama üzerindeki yerel Qwen2.5 modelinden olası kök nedeni ve yapılacakları istiyor." },
+        { title: "Tek alarm, uçtan uca", text: "CNC-02 90 °C'yi aşıyor. İşçi sadece CNC-02'nin notlarına bakıyor ve sınırı aşan ölçüm sıcaklık olduğu için yalnızca sıcaklık notunu tutuyor — bu süzme modele bırakılmıyor, kodda yapılıyor. Yerel Qwen2.5 modeli de notu kök nedene ve eyleme çeviriyor: soğutma sıvısı seviyesini kontrol et, sızıntı ara." },
+        { title: "Aradaki kuyruk", text: "RabbitMQ C++ sensörü yapay zekâ işçisinden ayırıyor: sensör yayınlayıp devam ediyor, işçi kendi hızında tüketiyor. Yönetim panelinde alarmlar geldikçe yayın ve teslim oranları yükseliyor." },
+        { title: "Tek komut", text: "RabbitMQ, Python işçisi ve C++ sensör docker compose up ile birlikte derlenip başlıyor; Ollama bilgisayarın kendisinde çalışıyor. Sensör kendi Debian imajında derlendiği için makineye hiçbir şey kurmak gerekmiyor." },
+      ],
     },
   },
   {
