@@ -488,8 +488,113 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    slug: "light-computer-services",
+    slug: "neo",
     code: "AFG-09",
+    title: "NEO",
+    track: "software",
+    stack: ["Ollama", "Qwen2.5", "RAG", "Hybrid search"],
+    links: [{ kind: "source", href: `${GH}/neo-local-assistant` }],
+    media: [],
+    en: {
+      tagline: "A privacy-first assistant that never leaves your machine.",
+      summary:
+        "A fully local knowledge assistant for developers: hybrid keyword + vector search over your own projects, a local LLM through Ollama, Turkish text normalisation, and tools like duplicate-code detection and interview mode.",
+      role: "Solo",
+      year: "2026",
+      highlights: ["Hybrid keyword + vector search", "Nothing sent to the cloud", "Turkish NLP support"],
+      spec: [
+        ["Runs", "100% local"],
+        ["Model", "Qwen2.5"],
+        ["Search", "Hybrid"],
+      ],
+    },
+    tr: {
+      tagline: "Bilgisayarından hiç çıkmayan, gizlilik öncelikli bir asistan.",
+      summary:
+        "Geliştiriciler için tamamen yerel çalışan bir bilgi asistanı: kendi projelerin üzerinde anahtar kelime + vektör karma arama, Ollama ile yerel LLM, Türkçe metin normalizasyonu, kod tekrarı tespiti ve mülakat modu gibi araçlar.",
+      role: "Tek başıma",
+      year: "2026",
+      highlights: ["Anahtar kelime + vektör karma arama", "Buluta hiçbir şey gönderilmez", "Türkçe dil desteği"],
+      spec: [
+        ["Çalışma", "%100 yerel"],
+        ["Model", "Qwen2.5"],
+        ["Arama", "Karma"],
+      ],
+    },
+  },
+  {
+    slug: "autovibe",
+    code: "AFG-10",
+    title: "AutoVibe",
+    track: "software",
+    stack: ["Flutter", "Node.js", "PostgreSQL"],
+    links: [{ kind: "source", href: `${GH}/autovibe-app` }],
+    media: [],
+    en: {
+      tagline: "A social app for people who love cars.",
+      summary:
+        "A car-focused social mobile app: feed, reels-style videos, a car marketplace and automotive news, with a Flutter front end and a Node.js + PostgreSQL backend.",
+      role: "Mobile + backend",
+      year: "2026",
+      highlights: ["Feed and reels-style video", "Car marketplace module", "Automotive news"],
+      spec: [
+        ["App", "Flutter"],
+        ["API", "Node.js"],
+        ["DB", "PostgreSQL"],
+      ],
+    },
+    tr: {
+      tagline: "Arabayı sevenler için bir sosyal uygulama.",
+      summary:
+        "Araba odaklı bir sosyal mobil uygulama: akış, reels tarzı videolar, araç pazarı ve otomotiv haberleri; Flutter ön yüz, Node.js + PostgreSQL arka uç.",
+      role: "Mobil + arka uç",
+      year: "2026",
+      highlights: ["Akış ve reels tarzı video", "Araç pazarı modülü", "Otomotiv haberleri"],
+      spec: [
+        ["Uygulama", "Flutter"],
+        ["API", "Node.js"],
+        ["Veritabanı", "PostgreSQL"],
+      ],
+    },
+  },
+  {
+    slug: "your-event",
+    code: "AFG-11",
+    title: "Your Event",
+    track: "software",
+    stack: ["Flutter", "Node.js (TS)", "PostgreSQL"],
+    links: [{ kind: "source", href: `${GH}/your_event` }],
+    media: [],
+    en: {
+      tagline: "Find your crowd — car meets, study groups, gaming nights.",
+      summary:
+        "A social event platform built by two engineering students: create public or private events, discover them on a map and filter by interest.",
+      role: "Team of two",
+      year: "2026",
+      highlights: ["Map-based discovery", "Public / private events", "Interest filtering"],
+      spec: [
+        ["App", "Flutter"],
+        ["API", "TypeScript"],
+        ["Status", "MVP"],
+      ],
+    },
+    tr: {
+      tagline: "Kalabalığını bul — araba buluşmaları, çalışma grupları, oyun geceleri.",
+      summary:
+        "İki mühendislik öğrencisinin geliştirdiği sosyal etkinlik platformu: herkese açık ya da özel etkinlik oluştur, haritada keşfet, ilgi alanına göre filtrele.",
+      role: "İki kişilik ekip",
+      year: "2026",
+      highlights: ["Harita üzerinden keşif", "Açık / özel etkinlikler", "İlgi alanı filtresi"],
+      spec: [
+        ["Uygulama", "Flutter"],
+        ["API", "TypeScript"],
+        ["Durum", "MVP"],
+      ],
+    },
+  },
+  {
+    slug: "light-computer-services",
+    code: "AFG-12",
     title: "Light Computer Services",
     track: "games",
     stack: ["JavaScript", "Canvas", "Web Audio"],
@@ -541,12 +646,16 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "kapat",
-    code: "AFG-10",
+    code: "AFG-13",
     title: "KAPAT",
     track: "games",
     stack: ["JavaScript", "Canvas 2D", "Web Audio"],
     links: [{ kind: "source", href: `${GH}/KAPAT` }],
-    media: [{ type: "image", src: "/work/kapat-cover.webp" }],
+    media: [
+      { type: "image", src: "/work/kapat-scene.webp" },
+      { type: "image", src: "/work/kapat-title.webp" },
+      { type: "image", src: "/work/kapat-consoles.webp" },
+    ],
     en: {
       tagline: "05:12. The lab is empty. Your AI just opened a session on its own.",
       summary:
@@ -559,7 +668,12 @@ export const PROJECTS: Project[] = [
         ["Endings", "Multiple"],
         ["Audio", "Procedural"],
       ],
-      captions: ["Cover"],
+      captions: ["Opening scene — 05:12, Victor's desk", "Title screen", "Two consoles: AXE on the left, NINETYNINE on the right"],
+      notes: [
+        { title: "Opening scene", text: "A short Canvas 2D cinematic sets the mood: an empty lab, the city at night, a monitor that greets you before you type anything. Rain, hum and footsteps are all synthesised live with the Web Audio API." },
+        { title: "Title screen", text: "English and Turkish from the first screen. The whole game ships as one HTML file with no dependencies." },
+        { title: "Two AIs, one truth", text: "AXE talks through a raw terminal, NINETYNINE through a polished chat. The player opens files, compares reports and chooses replies; what you check and who you believe decides the ending." },
+      ],
     },
     tr: {
       tagline: "05.12. Laboratuvar boş. Yapay zekân kendi kendine bir oturum açtı.",
@@ -573,111 +687,11 @@ export const PROJECTS: Project[] = [
         ["Son", "Birden çok"],
         ["Ses", "Prosedürel"],
       ],
-      captions: ["Kapak"],
-    },
-  },
-  {
-    slug: "neo",
-    code: "AFG-11",
-    title: "NEO",
-    track: "software",
-    stack: ["Ollama", "Qwen2.5", "RAG", "Hybrid search"],
-    links: [{ kind: "source", href: `${GH}/neo-local-assistant` }],
-    media: [],
-    en: {
-      tagline: "A privacy-first assistant that never leaves your machine.",
-      summary:
-        "A fully local knowledge assistant for developers: hybrid keyword + vector search over your own projects, a local LLM through Ollama, Turkish text normalisation, and tools like duplicate-code detection and interview mode.",
-      role: "Solo",
-      year: "2026",
-      highlights: ["Hybrid keyword + vector search", "Nothing sent to the cloud", "Turkish NLP support"],
-      spec: [
-        ["Runs", "100% local"],
-        ["Model", "Qwen2.5"],
-        ["Search", "Hybrid"],
-      ],
-    },
-    tr: {
-      tagline: "Bilgisayarından hiç çıkmayan, gizlilik öncelikli bir asistan.",
-      summary:
-        "Geliştiriciler için tamamen yerel çalışan bir bilgi asistanı: kendi projelerin üzerinde anahtar kelime + vektör karma arama, Ollama ile yerel LLM, Türkçe metin normalizasyonu, kod tekrarı tespiti ve mülakat modu gibi araçlar.",
-      role: "Tek başıma",
-      year: "2026",
-      highlights: ["Anahtar kelime + vektör karma arama", "Buluta hiçbir şey gönderilmez", "Türkçe dil desteği"],
-      spec: [
-        ["Çalışma", "%100 yerel"],
-        ["Model", "Qwen2.5"],
-        ["Arama", "Karma"],
-      ],
-    },
-  },
-  {
-    slug: "autovibe",
-    code: "AFG-12",
-    title: "AutoVibe",
-    track: "software",
-    stack: ["Flutter", "Node.js", "PostgreSQL"],
-    links: [{ kind: "source", href: `${GH}/autovibe-app` }],
-    media: [],
-    en: {
-      tagline: "A social app for people who love cars.",
-      summary:
-        "A car-focused social mobile app: feed, reels-style videos, a car marketplace and automotive news, with a Flutter front end and a Node.js + PostgreSQL backend.",
-      role: "Mobile + backend",
-      year: "2026",
-      highlights: ["Feed and reels-style video", "Car marketplace module", "Automotive news"],
-      spec: [
-        ["App", "Flutter"],
-        ["API", "Node.js"],
-        ["DB", "PostgreSQL"],
-      ],
-    },
-    tr: {
-      tagline: "Arabayı sevenler için bir sosyal uygulama.",
-      summary:
-        "Araba odaklı bir sosyal mobil uygulama: akış, reels tarzı videolar, araç pazarı ve otomotiv haberleri; Flutter ön yüz, Node.js + PostgreSQL arka uç.",
-      role: "Mobil + arka uç",
-      year: "2026",
-      highlights: ["Akış ve reels tarzı video", "Araç pazarı modülü", "Otomotiv haberleri"],
-      spec: [
-        ["Uygulama", "Flutter"],
-        ["API", "Node.js"],
-        ["Veritabanı", "PostgreSQL"],
-      ],
-    },
-  },
-  {
-    slug: "your-event",
-    code: "AFG-13",
-    title: "Your Event",
-    track: "software",
-    stack: ["Flutter", "Node.js (TS)", "PostgreSQL"],
-    links: [{ kind: "source", href: `${GH}/your_event` }],
-    media: [],
-    en: {
-      tagline: "Find your crowd — car meets, study groups, gaming nights.",
-      summary:
-        "A social event platform built by two engineering students: create public or private events, discover them on a map and filter by interest.",
-      role: "Team of two",
-      year: "2026",
-      highlights: ["Map-based discovery", "Public / private events", "Interest filtering"],
-      spec: [
-        ["App", "Flutter"],
-        ["API", "TypeScript"],
-        ["Status", "MVP"],
-      ],
-    },
-    tr: {
-      tagline: "Kalabalığını bul — araba buluşmaları, çalışma grupları, oyun geceleri.",
-      summary:
-        "İki mühendislik öğrencisinin geliştirdiği sosyal etkinlik platformu: herkese açık ya da özel etkinlik oluştur, haritada keşfet, ilgi alanına göre filtrele.",
-      role: "İki kişilik ekip",
-      year: "2026",
-      highlights: ["Harita üzerinden keşif", "Açık / özel etkinlikler", "İlgi alanı filtresi"],
-      spec: [
-        ["Uygulama", "Flutter"],
-        ["API", "TypeScript"],
-        ["Durum", "MVP"],
+      captions: ["Açılış sahnesi — 05.12, Victor'un masası", "Başlık ekranı", "İki konsol: solda AXE, sağda NINETYNINE"],
+      notes: [
+        { title: "Açılış sahnesi", text: "Kısa bir Canvas 2D sinematiği atmosferi kuruyor: boş laboratuvar, gece şehir, sen bir şey yazmadan selam veren ekran. Yağmur, uğultu ve ayak sesleri Web Audio API ile anlık üretiliyor." },
+        { title: "Başlık ekranı", text: "İlk ekrandan itibaren Türkçe ve İngilizce. Oyunun tamamı bağımlılığı olmayan tek bir HTML dosyası." },
+        { title: "İki yapay zekâ, tek gerçek", text: "AXE ham bir terminalden, NINETYNINE şık bir sohbet ekranından konuşuyor. Oyuncu dosyaları açıyor, raporları karşılaştırıyor ve cevap seçiyor; neyi kontrol ettiğin ve kime inandığın sonu belirliyor." },
       ],
     },
   },
