@@ -458,12 +458,12 @@ export const PROJECTS: Project[] = [
     en: {
       tagline: "Predictive maintenance: edge sensor to root cause in one pipeline.",
       summary:
-        "An Industry 4.0 pipeline: a C++ edge sensor publishes critical telemetry over AMQP, RabbitMQ queues it without loss, and a consumer matches each alarm against technician notes with local RAG before a local LLM suggests a root cause and mitigation — fully on-premise.",
+        "An Industry 4.0 pipeline: a C++ edge sensor watches temperature and vibration and publishes a JSON alarm over AMQP when a limit is crossed, RabbitMQ buffers it, and a worker matches each alarm against technician notes with local RAG before a local LLM suggests a root cause and mitigation — fully on-premise, started with one docker compose command.",
       role: "Solo",
       year: "2026",
       highlights: [
-        "C++ AMQP publisher for temperature, vibration and status",
-        "Reliable queueing with RabbitMQ",
+        "C++17 edge sensor (rabbitmq-c): limits of 90 °C and 7.1 mm/s with hysteresis, so one noisy reading can't fire twice",
+        "RabbitMQ decouples the sensor from the AI worker",
         "Local RAG over repair notes + on-prem LLM diagnosis",
       ],
       spec: [
@@ -472,17 +472,17 @@ export const PROJECTS: Project[] = [
         ["AI", "Local only"],
       ],
       captions: ['System diagram: alarm to root cause'],
-      notes: [{ title: 'Alarm to root cause', text: 'A C++ edge sensor publishes critical readings as JSON over AMQP. RabbitMQ queues them so nothing is lost; a worker pulls each alarm, retrieves similar past cases from technician notes in ChromaDB and asks a local Qwen2.5 model through Ollama for the likely root cause and next steps.' }],
+      notes: [{ title: 'Alarm to root cause', text: 'A C++ edge sensor checks three machines against their limits and publishes a JSON alarm over AMQP only when one is crossed. RabbitMQ buffers the alarms; a worker pulls each alarm, retrieves similar past cases from technician notes in ChromaDB and asks a local Qwen2.5 model through Ollama for the likely root cause and next steps.' }],
     },
     tr: {
       tagline: "Kestirimci bakım: sahadaki sensörden kök nedene tek hat.",
       summary:
-        "Endüstri 4.0 hattı: C++ ile yazılmış uç sensör kritik verileri AMQP üzerinden yayınlar, RabbitMQ bunları kayıpsız kuyruğa alır, tüketici her alarmı yerel RAG ile teknisyen notlarıyla eşleştirir ve yerel bir LLM kök neden ile çözüm önerir — tamamen şirket içinde.",
+        "Endüstri 4.0 hattı: C++ ile yazılmış uç sensör sıcaklık ve titreşimi izler, bir sınır aşılınca AMQP üzerinden JSON alarm yayınlar, RabbitMQ bunu ara bellekte tutar, işçi her alarmı yerel RAG ile teknisyen notlarıyla eşleştirir ve yerel bir LLM kök neden ile çözüm önerir — tamamen şirket içinde, tek bir docker compose komutuyla.",
       role: "Tek başıma",
       year: "2026",
       highlights: [
-        "Sıcaklık, titreşim ve durum için C++ AMQP yayıncısı",
-        "RabbitMQ ile güvenilir kuyruk",
+        "C++17 uç sensör (rabbitmq-c): 90 °C ve 7,1 mm/s sınırları, histerezisle tek bir gürültülü ölçüm iki kez alarm vermez",
+        "RabbitMQ sensörü yapay zekâ işçisinden ayırır",
         "Tamir notları üzerinde yerel RAG + yerel LLM teşhisi",
       ],
       spec: [
@@ -491,7 +491,7 @@ export const PROJECTS: Project[] = [
         ["Yapay zekâ", "Sadece yerel"],
       ],
       captions: ['Sistem şeması: alarmdan kök nedene'],
-      notes: [{ title: 'Alarmdan kök nedene', text: "C++ uç sensör kritik ölçümleri JSON olarak AMQP ile yayınlıyor. RabbitMQ bunları kayıpsız kuyruğa alıyor; bir işçi her alarmı çekip ChromaDB'deki teknisyen notlarından benzer eski vakaları buluyor ve Ollama üzerindeki yerel Qwen2.5 modelinden olası kök nedeni ve yapılacakları istiyor." }],
+      notes: [{ title: 'Alarmdan kök nedene', text: "C++ uç sensör üç makineyi sınırlarına göre izliyor ve yalnızca bir sınır aşılınca AMQP ile JSON alarm yayınlıyor. RabbitMQ alarmları ara bellekte tutuyor; bir işçi her alarmı çekip ChromaDB'deki teknisyen notlarından benzer eski vakaları buluyor ve Ollama üzerindeki yerel Qwen2.5 modelinden olası kök nedeni ve yapılacakları istiyor." }],
     },
   },
   {
