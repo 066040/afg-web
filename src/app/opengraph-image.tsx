@@ -1,90 +1,54 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const alt = "Ahmet Furkan Göktaş — Embedded & Automotive Software";
 
-export default function OpenGraphImage() {
-    return new ImageResponse(
-        (
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    position: "relative",
-                    backgroundColor: "#000",
-                    color: "#fff",
-                    padding: "72px",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                }}
-            >
-                {/* Subtle glow */}
-                <div
-                    style={{
-                        position: "absolute",
-                        inset: -200,
-                        background:
-                            "radial-gradient(circle at 30% 40%, rgba(59,130,246,0.35), transparent 55%), radial-gradient(circle at 70% 60%, rgba(168,85,247,0.30), transparent 55%)",
-                        filter: "blur(0px)",
-                        opacity: 1,
-                    }}
-                />
-
-                {/* Noise-like overlay (very subtle) */}
-                <div
-                    style={{
-                        position: "absolute",
-                        inset: 0,
-                        background:
-                            "linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))",
-                        opacity: 0.7,
-                    }}
-                />
-
-                {/* Content */}
-                <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 18 }}>
-                    <div style={{ fontSize: 24, opacity: 0.85, letterSpacing: 2 }}>
-                        AFG
-                    </div>
-
-                    <div style={{ fontSize: 78, fontWeight: 800, lineHeight: 1.05 }}>
-                        Ahmet Furkan Göktaş
-                    </div>
-
-                    <div style={{ fontSize: 34, opacity: 0.85 }}>
-                        Computer Engineer
-                    </div>
-
-                    <div
-                        style={{
-                            marginTop: 18,
-                            fontSize: 22,
-                            opacity: 0.75,
-                        }}
-                    >
-                        Flutter • Next.js • Backend Systems
-                    </div>
-
-                    {/* Bottom line */}
-                    <div
-                        style={{
-                            marginTop: 44,
-                            display: "flex",
-                            gap: 10,
-                            fontSize: 18,
-                            opacity: 0.65,
-                        }}
-                    >
-                        <span>afurkangoktas.com</span>
-                        <span>•</span>
-                        <span>Projects • Articles • Contact</span>
-                    </div>
-                </div>
-            </div>
-        ),
-        size
-    );
+export default async function OpenGraphImage() {
+  const dir = join(process.cwd(), "src/assets");
+  const archivo = await readFile(join(dir, "archivo-900-tr.woff"));
+  const grid =
+    "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)";
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          backgroundColor: "#0b0c0e",
+          backgroundImage: grid,
+          backgroundSize: "60px 60px",
+          color: "#ece9e3",
+          fontFamily: "Archivo",
+          padding: 72,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#6b7078", letterSpacing: 4 }}>
+          <span style={{ color: "#ff8a1f" }}>AFG / 178</span>
+          <span>ANKARA · TR</span>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 112, fontWeight: 900, lineHeight: 0.92, letterSpacing: -2 }}>AHMET FURKAN</div>
+          <div style={{ display: "flex", fontSize: 112, fontWeight: 900, lineHeight: 0.92, letterSpacing: -2 }}>
+            GÖKTAŞ<span style={{ color: "#ff8a1f" }}>.</span>
+          </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#a3a6ab" }}>
+          <span>Embedded systems · Vehicle telemetry · Software</span>
+          <span style={{ color: "#ece9e3" }}>afurkangoktas.com</span>
+        </div>
+      </div>
+    ),
+    {
+      ...size,
+      fonts: [
+        { name: "Archivo", data: archivo, weight: 900, style: "normal" },
+      ],
+    },
+  );
 }

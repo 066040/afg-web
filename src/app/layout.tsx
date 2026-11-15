@@ -1,202 +1,151 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import Link from "next/link";
 import "./globals.css";
-
-const SITE_URL = "https://www.afurkangoktas.com";
-const SITE_NAME = "Ahmet Furkan Göktaş";
-const AUTHOR_NAME = "Ahmet Furkan Göktaş";
+import Intro from "@/components/Intro";
+import Reveal from "@/components/Reveal";
+import ReplayIntro from "@/components/ReplayIntro";
+import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-
+  metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE_NAME} | Computer Engineer`,
-    template: `%s | ${SITE_NAME}`,
+    default: `${SITE.name} — Embedded & Automotive Software`,
+    template: `%s — ${SITE.name}`,
   },
-
-  description:
-    "Computer Engineer building scalable mobile and web applications. Flutter, Next.js, backend systems, and databases.",
-
-  applicationName: SITE_NAME,
-
+  description: SITE.description,
+  applicationName: SITE.name,
   keywords: [
+    "Ahmet Furkan Göktaş",
     "Computer Engineer",
-    "Computer Engineering",
-    "Flutter",
-    "Next.js",
-    "NestJS",
-    "Node.js",
-    "PostgreSQL",
-    "Backend Systems",
-    "Mobile App Developer",
-    "Web Developer",
-    "Portfolio",
+    "Embedded Systems",
+    "Automotive Software",
+    "STM32",
+    "ESP32",
+    "CAN Bus",
+    "Vehicle Telemetry",
+    "Garaj178",
+    "Ankara",
   ],
-
-  authors: [{ name: AUTHOR_NAME }],
-  creator: AUTHOR_NAME,
-
-  alternates: {
-    canonical: "/",
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   openGraph: {
     type: "website",
-    url: SITE_URL,
-    siteName: SITE_NAME,
-    title: `${SITE_NAME} | Computer Engineer`,
-    description:
-      "Computer Engineer building scalable mobile and web applications. Flutter, Next.js, backend systems, and databases.",
+    url: SITE.url,
+    siteName: SITE.name,
+    title: `${SITE.name} — Embedded & Automotive Software`,
+    description: SITE.description,
     locale: "en_US",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${SITE_NAME} Open Graph Image`,
-      },
-    ],
   },
-
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Computer Engineer`,
-    description:
-      "Computer Engineer building scalable mobile and web applications. Flutter, Next.js, backend systems, and databases.",
-    images: ["/og.png"],
+    title: `${SITE.name} — Embedded & Automotive Software`,
+    description: SITE.description,
   },
-
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-
   manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#0b0c0e",
+};
+
+// Runs before paint: skip the intro for this session / reduced motion.
+const introGate = `try{var h=document.documentElement;if(sessionStorage.getItem('afg-intro')==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches){h.classList.add('intro-seen','site-on')}}catch(e){}`;
+
+const NAV = [
+  { href: "/#work", label: "Work" },
+  { href: "/projects", label: "Index" },
+  { href: "/#garage", label: "Garage" },
+  { href: "/#contact", label: "Contact" },
+];
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: AUTHOR_NAME,
-    url: SITE_URL,
+    name: SITE.name,
+    url: SITE.url,
     jobTitle: "Computer Engineer",
-    description:
-      "Computer Engineer building scalable mobile and web applications. Flutter, Next.js, backend systems, and databases.",
-    sameAs: [
-      "https://github.com/066040",
-      "https://www.linkedin.com/in/ahmet-furkan-g%C3%B6kta%C5%9F-913a44247",
-    ],
+    alumniOf: "OSTIM Technical University",
+    address: { "@type": "PostalAddress", addressLocality: "Ankara", addressCountry: "TR" },
+    sameAs: [SITE.github, SITE.linkedin, SITE.youtube],
   };
 
   return (
-    <html lang="en" translate="no">
+    <html lang="en" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
+        <script dangerouslySetInnerHTML={{ __html: introGate }} />
+        <noscript>
+          <style>{`#afg-intro{display:none}.after-intro,.reveal,.rise>span{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
 
-      <body className="antialiased bg-white text-slate-900 min-h-screen flex flex-col selection:bg-blue-500/20 selection:text-slate-900">
-        {/* Global premium light background (ALL pages) */}
-        <div className="pointer-events-none fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(1200px_circle_at_20%_10%,rgba(59,130,246,0.18),transparent_55%),radial-gradient(900px_circle_at_80%_20%,rgba(99,102,241,0.14),transparent_50%),radial-gradient(900px_circle_at_50%_95%,rgba(16,185,129,0.10),transparent_55%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
-          <div className="absolute inset-0 opacity-[0.12] [background-image:radial-gradient(rgba(15,23,42,0.18)_1px,transparent_1px)] [background-size:18px_18px]" />
-        </div>
+      <body className="grain flex min-h-screen flex-col">
+        <Intro />
+        <Reveal />
 
-        {/* Top glow divider (subtle) */}
-        <div className="pointer-events-none fixed inset-x-0 top-0 h-24 -z-10 bg-[radial-gradient(900px_circle_at_50%_0%,rgba(59,130,246,0.14),transparent_60%)]" />
+        <header className="sticky top-0 z-50 border-b border-line/70 bg-bg/80 backdrop-blur-md">
+          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
+            <Link href="/" aria-label="Home" className="group flex items-baseline gap-2">
+              <span className="wide text-xl font-black tracking-tight">AFG</span>
+              <span className="mono text-[11px] text-ink-3 transition group-hover:text-signal">/178</span>
+            </Link>
 
-        {/* HEADER */}
-        <header className="w-full px-6 py-6 md:py-7">
-          <div className="max-w-5xl mx-auto flex items-center justify-between">
-            <a
-              href="/"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/70 px-4 py-2 font-extrabold text-lg tracking-tight text-slate-900 shadow-sm hover:shadow-md hover:-translate-y-[1px] hover:text-blue-700 transition"
-              aria-label="Home"
-            >
-              AFG
-            </a>
-
-            <nav
-              className="flex items-center gap-2 sm:gap-3 text-sm font-semibold"
-              aria-label="Global Navigation"
-            >
-              <a
-                href="/projects"
-                className="rounded-full px-4 py-2 text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition"
-              >
-                Projects
-              </a>
-              <a
-                href="/articles"
-                className="rounded-full px-4 py-2 text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition"
-              >
-                Articles
-              </a>
-              <a
-                href="/contact"
-                className="rounded-full px-4 py-2 text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition"
-              >
-                Contact
-              </a>
+            <nav aria-label="Main" className="flex items-center gap-1 text-sm">
+              {NAV.map((n) => (
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  className={`rounded-full px-3 py-1.5 text-ink-2 transition hover:text-ink md:px-4 ${
+                    n.label === "Index" ? "hidden sm:block" : ""
+                  }`}
+                >
+                  {n.label}
+                </Link>
+              ))}
             </nav>
-          </div>
 
-          {/* subtle divider */}
-          <div className="max-w-5xl mx-auto mt-6 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+            <div className="mono hidden items-center gap-2 text-[11px] text-ink-2 lg:flex">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-ok" />
+              </span>
+              {SITE.status}
+            </div>
+          </div>
         </header>
 
-        {/* CONTENT */}
-        <div className="flex-1 w-full">{children}</div>
+        <div className="flex-1">{children}</div>
 
-        {/* FOOTER */}
-        <footer className="w-full mt-auto">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
-            <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-sm text-slate-600">
-                &copy; 2026 Ahmet Furkan Göktaş. All rights reserved.
-              </div>
-
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://github.com/066040"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition"
-                >
-                  GitHub
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/ahmet-furkan-g%C3%B6kta%C5%9F-913a44247"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition"
-                >
-                  LinkedIn
-                </a>
-              </div>
+        <footer className="border-t border-line">
+          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 md:grid-cols-3 md:items-end md:px-8">
+            <div>
+              <div className="wide text-2xl font-black">AFG</div>
+              <p className="mono mt-2 text-[11px] leading-relaxed text-ink-3">
+                DESIGNED &amp; BUILT BY AHMET FURKAN GÖKTAŞ
+                <br />
+                ANKARA · 39.93°N 32.86°E · © {new Date().getFullYear()}
+              </p>
+            </div>
+            <div className="mono flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink-2 md:justify-center">
+              <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="hover:text-signal">GitHub</a>
+              <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-signal">LinkedIn</a>
+              <a href={SITE.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-signal">YouTube</a>
+              <a href={`mailto:${SITE.email}`} className="hover:text-signal">Email</a>
+            </div>
+            <div className="md:text-right">
+              <ReplayIntro />
             </div>
           </div>
         </footer>

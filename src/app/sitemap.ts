@@ -1,14 +1,12 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://afurkangoktas.com";
+import { PROJECTS } from "@/data/projects";
+import { SITE } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const routes = ["", "/projects", "/articles", "/contact"];
-
-    return routes.map((path) => ({
-        url: `${SITE_URL}${path}`,
-        lastModified: new Date(),
-        changeFrequency: "weekly",
-        priority: path === "" ? 1 : 0.7,
-    }));
+  const now = new Date();
+  return [
+    { url: SITE.url, lastModified: now, priority: 1 },
+    { url: `${SITE.url}/projects`, lastModified: now, priority: 0.8 },
+    ...PROJECTS.map((p) => ({ url: `${SITE.url}/projects/${p.slug}`, lastModified: now, priority: 0.6 })),
+  ];
 }
