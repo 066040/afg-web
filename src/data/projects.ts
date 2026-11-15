@@ -51,8 +51,9 @@ export const PROJECTS: Project[] = [
     stack: ["ESP32-C3", "KiCad", "C++ firmware", "JavaScript", "PWA"],
     links: [{ kind: "source", href: `${GH}/pixeltime` }],
     media: [
-      { type: "image", src: "/work/pixeltime-watch.webp" },
+      { type: "image", src: "/work/pixeltime-product.webp" },
       { type: "image", src: "/work/pixeltime-diagram.webp" },
+      { type: "image", src: "/work/pixeltime-watch.webp" },
       { type: "image", src: "/work/pixeltime-pcb-front.webp" },
       { type: "image", src: "/work/pixeltime-pcb-back.webp" },
       { type: "image", src: "/work/pixeltime-layout.webp" },
@@ -80,8 +81,9 @@ export const PROJECTS: Project[] = [
         ["Squares", "256 / portrait"],
       ],
       captions: [
-        "PixelTime Watch prototype running on the bench",
+        "PixelTime Watch — product concept render with retail box",
         "System diagram: watch to web",
+        "The prototype on my desk, built and tested piece by piece",
         "PCB, 3D view — buttons, display connector, buzzer",
         "PCB, 3D view — ESP32-C3 module, USB-C and charging circuit",
         "PCB layout in KiCad",
@@ -89,8 +91,9 @@ export const PROJECTS: Project[] = [
         "PixelTime web app — sign-up screen",
       ],
       notes: [
-        { title: "Prototype on the bench", text: "The firmware running on a 2.25\" bar-type TFT before the PCB: big pixel-font clock, the day carousel and a progress bar for the current session." },
+        { title: "Ready for the shelf", text: "Where the project is heading: the watch in its enclosure next to its retail box. This is a 3D concept render, not a photo yet — the enclosure is being designed in DreamDesign and the PCB is already laid out in KiCad." },
         { title: "From the wrist to the leaderboard", text: "The ESP32-C3 counts sessions and stores finished blocks even with no connection; the RTC keeps time on battery. When Wi-Fi is available (set up once through WiFiManager) it syncs the clock over NTP and sends the blocks, signed per device, to a Supabase function that accepts or rejects each one — so the web app's squares can't be faked." },
+        { title: "Built piece by piece", text: "Before any PCB, every part was wired up and tested on its own on my desk: the 2.25\" bar TFT, the buttons, the RTC, the buzzer. The firmware already shows the big pixel-font clock, the day carousel and the session progress bar." },
         { title: "Top side: the user interface", text: "Four tactile switches for minus / plus / OK and reset, the FPC connector for the display, a passive buzzer and the vibration motor driver — everything the user touches sits on this side." },
         { title: "Bottom side: brains and power", text: "ESP32-C3-MINI module with its antenna kept clear of copper, USB-C with ESD protection, TP4056 Li-ion charger with DW01A + FS8205 protection, a 3.3 V LDO and the RV-3028 RTC so time survives without Wi-Fi." },
         { title: "Routing", text: "Two-layer board routed in KiCad 10 with ground pours on both sides, mounting holes in each corner and the antenna area pushed to the edge for range." },
@@ -118,8 +121,9 @@ export const PROJECTS: Project[] = [
         ["Kare", "256 / portre"],
       ],
       captions: [
-        "PixelTime Saat prototipi tezgâhta çalışırken",
+        "PixelTime Saat — satış kutusuyla ürün konsepti (render)",
         "Sistem şeması: saatten web'e",
+        "Masamdaki prototip, parça parça kurulup test edildi",
         "PCB, 3D görünüm — düğmeler, ekran konnektörü, buzzer",
         "PCB, 3D görünüm — ESP32-C3 modülü, USB-C ve şarj devresi",
         "KiCad'de PCB yerleşimi",
@@ -127,8 +131,9 @@ export const PROJECTS: Project[] = [
         "PixelTime web uygulaması — kayıt ekranı",
       ],
       notes: [
-        { title: "Tezgâhta prototip", text: "PCB'den önce 2,25\" uzun TFT ekranda çalışan firmware: büyük piksel fontlu saat, gün kaydırması ve o anki oturumun ilerleme çubuğu." },
+        { title: "Rafa hazır", text: "Projenin gittiği yer: kutusundaki saat ve yanında satış ambalajı. Bu henüz bir fotoğraf değil, 3D konsept render — kutusu DreamDesign'da tasarlanıyor, PCB'si KiCad'de çizildi." },
         { title: "Bilekten sıralamaya", text: "ESP32-C3 oturumları sayıyor ve bağlantı yokken bile biten blokları saklıyor; RTC pil üzerinden saati tutuyor. Wi-Fi olunca (WiFiManager ile bir kez kurulur) saati NTP'den eşitliyor ve cihaza özel imzalanmış blokları Supabase'deki bir fonksiyona gönderiyor; fonksiyon her bloğu kabul ya da reddediyor — böylece web uygulamasındaki kareler sahte olamıyor." },
+        { title: "Parça parça kuruldu", text: "Daha PCB yokken her parça masamda tek tek bağlanıp test edildi: 2,25\" uzun TFT ekran, düğmeler, RTC, buzzer. Firmware şimdiden büyük piksel fontlu saati, gün kaydırmasını ve oturum ilerleme çubuğunu gösteriyor." },
         { title: "Üst yüz: kullanıcı arayüzü", text: "Eksi / artı / OK ve reset için dört düğme, ekranın FPC konnektörü, pasif buzzer ve titreşim motoru sürücüsü — kullanıcının dokunduğu her şey bu yüzde." },
         { title: "Alt yüz: beyin ve güç", text: "Anteni bakırdan uzak tutulmuş ESP32-C3-MINI modülü, ESD korumalı USB-C, DW01A + FS8205 korumalı TP4056 Li-ion şarj devresi, 3,3 V LDO ve Wi-Fi olmadan da saati tutan RV-3028 RTC." },
         { title: "Yerleşim", text: "KiCad 10'da iki katmanlı kart; iki yüzde de toprak dolgusu, köşelerde montaj delikleri ve menzil için kenara itilmiş anten bölgesi." },
@@ -142,60 +147,89 @@ export const PROJECTS: Project[] = [
     code: "AFG-02",
     title: "DreamDesign",
     track: "software",
-    stack: ["Three.js", "JavaScript", "WebGL", "Image-to-3D server"],
+    stack: ["Three.js", "JavaScript", "WebGL", "TripoSR (local)", "KiCad import", "STL export"],
     links: [
       { kind: "try", href: "https://066040.github.io/DreamDesign/" },
       { kind: "source", href: `${GH}/DreamDesign` },
     ],
     media: [
       { type: "image", src: "/work/dreamdesign-plane.webp" },
+      { type: "image", src: "/work/dreamdesign-simple.webp" },
+      { type: "image", src: "/work/dreamdesign-sketch.webp" },
+      { type: "image", src: "/work/dreamdesign-cage.webp" },
       { type: "image", src: "/work/dreamdesign-plane-top.webp" },
     ],
     featured: true,
     en: {
-      tagline: "Photo to 3D, then edit and design anything. In the browser.",
+      tagline: "A way to scale your dreams: from a photo or a sketch to a part you can print.",
       summary:
-        "An open-source, Fusion 360-style design workspace I'm building to turn ideas into real parts. Give it front, side and top silhouettes and it builds a measured solid; then reshape it, measure it in millimetres and export it for 3D printing. A Simple mode lets complete beginners use it too.",
+        "I have more ideas than I have ways to model them — a flying car, a robot dog, a case for my own PCB. So I'm building the tool for it: an open-source, Fusion 360-style design workspace that runs in the browser. Turn a photo or front, side and top silhouettes into a measured 3D model, sketch and extrude your own parts, reshape them, measure them in millimetres and export them for 3D printing. Its Simple mode strips all of that down to big plain-language buttons, so someone who has never opened a CAD program can design a box, a pen holder or a bracket and send it straight to a printer.",
       role: "Solo — open source (MIT), beta v0.1",
       year: "2026",
       highlights: [
-        "Model from multiple views: silhouettes intersect into a real-scale solid",
-        "Skeleton extraction and cage deformation to reshape a model",
-        "mm dimensioning, extrusion, hole drilling and STL export for printing",
-        "Enclosure generator straight from a KiCad board file",
-        "Simple / Advanced modes — plain-language buttons for beginners",
+        "Photo to 3D: an optional local server runs TripoSR on your own GPU (works on 4 GB cards)",
+        "Model from multiple views: front, side and top silhouettes intersect into a real-scale solid",
+        "Sketch area with live dimensions — lines, rectangles, circles — then extrude or revolve into 3D",
+        "Reshape with a deformation cage or an extracted skeleton; cut, merge, mirror, drill and round",
+        "Millimetre measuring and mass by material (aluminium, steel, carbon, titanium, ABS)",
+        "Enclosure generator: drop in a KiCad board and get a tray with standoffs, port openings and a lid",
+        "Simple mode for beginners and 3D printing: shapes in mm, make it a cup, drill a hole, round the corners, export STL",
+        "Open source (MIT), tested, bilingual docs",
       ],
       spec: [
         ["Status", "Beta v0.1"],
         ["License", "MIT"],
-        ["Core", "Photo → 3D"],
+        ["Core", "Photo → 3D → print"],
       ],
       captions: [
         "An aircraft built in DreamDesign from front, side and top silhouettes — 4.2 m span",
-        "Same model, top orthographic view with live dimensions",
+        "Simple mode: a rounded box typed in millimetres, colour picked, step history on the right",
+        "Sketch area: draw with live dimensions, then extrude or revolve",
+        "Deformation cage: grab control points to reshape a whole model",
+        "The aircraft from the top, orthographic, with live dimensions",
+      ],
+      notes: [
+        { title: "From three outlines to a solid", text: "I drew a front, a side and a top silhouette; DreamDesign intersected them into a measured aircraft with a 4.2 m span. The same feature turns photos of a car, a drone or a robot into a starting model you can then edit." },
+        { title: "Simple mode — CAD for everyone", text: "Pick a shape, type its size in millimetres, choose a colour. Make it a cup, drill a hole where you click, round the corners, join parts into one. Every step is listed and can be changed later; the result exports as an STL ready for a 3D printer. This is the part I want anyone — my mother included — to be able to use." },
+        { title: "Sketch, then extrude", text: "The drawing area works like a technical sketch: lines, rectangles and circles with their lengths shown as you draw, a grid in millimetres, and a panel to give the shape thickness (extrude) or spin it around an axis (revolve)." },
+        { title: "Reshape the whole thing", text: "A cage of control points surrounds the model; move one point or a whole layer and the surface follows smoothly. Raise a roof, stretch a nose, lower a car — without rebuilding it." },
+        { title: "Measured, not guessed", text: "Orthographic views on one key (X, Y, Z, isometric), live dimensions on every axis, and mass from the chosen material — so a design can be checked before it's printed or machined." },
       ],
     },
     tr: {
-      tagline: "Fotoğraftan 3D'ye, sonra istediğini düzenle ve tasarla. Tarayıcıda.",
+      tagline: "Hayallerini ölçeklemenin yollarından biri: fotoğraftan ya da çizimden basılabilir parçaya.",
       summary:
-        "Fikirleri gerçek parçalara dönüştürmek için geliştirdiğim, Fusion 360 tarzı açık kaynak bir tasarım ortamı. Ön, yan ve üst silüetleri verirsin, gerçek ölçülü bir katı model çıkarır; sonra şeklini değiştirir, milimetre cinsinden ölçer ve 3D baskı için dışa aktarırsın. Basit mod sayesinde hiç bilmeyen biri bile kullanabilir.",
+        "Aklımdaki fikirler, onları modelleyebileceğim araçlardan fazla — uçan bir araba, bir robot köpek, kendi PCB'me bir kutu. Bu yüzden aracı kendim yapıyorum: tarayıcıda çalışan, Fusion 360 tarzı açık kaynak bir tasarım ortamı. Bir fotoğrafı ya da ön, yan ve üst silüetleri ölçülü bir 3D modele çevir, kendi parçanı çizip ekstrüde et, şeklini değiştir, milimetreyle ölç ve 3D baskı için dışa aktar. Basit mod tüm bunları sade, büyük düğmelere indiriyor; hayatında CAD programı açmamış biri bile bir kutu, bir kalemlik ya da bir bağlantı parçası tasarlayıp doğrudan yazıcıya gönderebiliyor.",
       role: "Tek başıma — açık kaynak (MIT), beta v0.1",
       year: "2026",
       highlights: [
-        "Çoklu görünümden model: silüetlerin kesişimiyle gerçek ölçülü katı",
-        "İskelet çıkarma ve kafesle şekil değiştirme",
-        "mm ölçülendirme, ekstrüzyon, delik açma ve baskı için STL",
-        "KiCad kart dosyasından doğrudan kutu (muhafaza) üretimi",
-        "Basit / Gelişmiş mod — yeni başlayanlar için sade düğmeler",
+        "Fotoğraftan 3D: isteğe bağlı yerel sunucu TripoSR'ı kendi ekran kartında çalıştırır (4 GB kartta bile)",
+        "Çoklu görünümden model: ön, yan ve üst silüetlerin kesişimiyle gerçek ölçülü katı",
+        "Canlı ölçülü çizim alanı — çizgi, dikdörtgen, daire — sonra ekstrüzyon ya da döndürme ile 3D",
+        "Kafes ya da çıkarılan iskeletle şekil değiştirme; kesme, birleştirme, aynalama, delik ve yuvarlatma",
+        "Milimetre ölçüm ve malzemeye göre kütle (alüminyum, çelik, karbon, titanyum, ABS)",
+        "Kutu üretici: KiCad kartını bırak, vida ayakları, port açıklıkları ve kapağıyla muhafaza al",
+        "Yeni başlayanlar ve 3D baskı için Basit mod: mm ile şekil, kaba çevir, delik aç, köşeleri yuvarla, STL al",
+        "Açık kaynak (MIT), testli, iki dilli dokümantasyon",
       ],
       spec: [
         ["Durum", "Beta v0.1"],
         ["Lisans", "MIT"],
-        ["Çekirdek", "Fotoğraf → 3D"],
+        ["Çekirdek", "Fotoğraf → 3D → baskı"],
       ],
       captions: [
         "DreamDesign'da ön, yan ve üst silüetlerden üretilen uçak — 4,2 m kanat açıklığı",
-        "Aynı model, üstten ortografik görünüm ve canlı ölçüler",
+        "Basit mod: milimetreyle yazılmış yuvarlak kutu, seçilen renk, sağda adım geçmişi",
+        "Çizim alanı: canlı ölçülerle çiz, sonra ekstrüde et ya da döndür",
+        "Şekil verme kafesi: kontrol noktalarını tutup tüm modeli biçimlendir",
+        "Uçak üstten, ortografik görünümde ve canlı ölçülerle",
+      ],
+      notes: [
+        { title: "Üç çizgiden katı modele", text: "Ön, yan ve üst silüet çizdim; DreamDesign bunları kesiştirip 4,2 m kanat açıklığında, ölçülü bir uçak çıkardı. Aynı özellik bir arabanın, bir dronun ya da bir robotun fotoğraflarını düzenlenebilir bir başlangıç modeline çeviriyor." },
+        { title: "Basit mod — herkes için CAD", text: "Bir şekil seç, ölçüsünü milimetre olarak yaz, rengini seç. Kaba çevir, tıkladığın yere delik aç, köşeleri yuvarla, parçaları tek parça yap. Her adım listede duruyor ve sonradan değiştirilebiliyor; sonuç 3D yazıcıya hazır STL olarak çıkıyor. Herkesin — annem dahil — kullanabilmesini istediğim kısım bu." },
+        { title: "Çiz, sonra ekstrüde et", text: "Çizim alanı teknik bir eskiz gibi çalışıyor: çizerken uzunlukları görünen çizgi, dikdörtgen ve daireler, milimetrik ızgara ve şekle kalınlık veren (ekstrüzyon) ya da bir eksen etrafında döndüren (revolve) bir panel." },
+        { title: "Bütünü biçimlendir", text: "Modelin etrafını kontrol noktalarından bir kafes sarıyor; bir noktayı ya da bütün bir katmanı oynat, yüzey yumuşakça takip etsin. Tavanı yükselt, burnu uzat, arabayı alçalt — baştan yapmadan." },
+        { title: "Tahmin değil, ölçü", text: "Tek tuşla ortografik görünümler (X, Y, Z, izometrik), her eksende canlı ölçüler ve seçilen malzemeye göre kütle — tasarım basılmadan ya da işlenmeden önce kontrol edilebiliyor." },
       ],
     },
   },
@@ -529,7 +563,7 @@ export const PROJECTS: Project[] = [
       tagline: "Six interactive simulators for real-time scheduling.",
       summary:
         "For the CENG 435 RTOS course I built six interactive browser simulators — scheduling, deadlock, priority inversion and an ADAS scenario among them — so the concepts can be watched instead of memorised. Presented as a team of three; I built the simulator system.",
-      role: "Course project — built the simulators",
+      role: "Course project — CENG 435",
       year: "2025",
       highlights: ["Scheduling, deadlock, priority inversion, ADAS timing scenario", "Six standalone interactive simulators"],
       spec: [
@@ -542,7 +576,7 @@ export const PROJECTS: Project[] = [
       tagline: "Gerçek zamanlı zamanlama için altı etkileşimli simülatör.",
       summary:
         "CENG 435 RTOS dersi için altı etkileşimli tarayıcı simülatörü yaptım — zamanlama, kilitlenme (deadlock), öncelik terslemesi ve bir ADAS senaryosu dahil — kavramlar ezberlenmek yerine izlenebilsin diye. Üç kişilik ekip olarak sunduk; simülatör sistemini ben kurdum.",
-      role: "Ders projesi — simülatörleri ben yazdım",
+      role: "Ders projesi — CENG 435",
       year: "2025",
       highlights: ["Zamanlama, deadlock, öncelik terslemesi, ADAS zamanlama senaryosu", "Altı bağımsız etkileşimli simülatör"],
       spec: [
@@ -633,8 +667,8 @@ export const PROJECTS: Project[] = [
     en: {
       tagline: "Find your crowd — car meets, study groups, gaming nights.",
       summary:
-        "A social event platform built by two engineering students: create public or private events, discover them on a map and filter by interest.",
-      role: "Team of two",
+        "A social event platform I built on my own: create public or private events, discover them on a map and filter by interest.",
+      role: "Solo",
       year: "2026",
       highlights: ["Map-based discovery", "Public / private events", "Interest filtering"],
       spec: [
@@ -646,8 +680,8 @@ export const PROJECTS: Project[] = [
     tr: {
       tagline: "Kalabalığını bul — araba buluşmaları, çalışma grupları, oyun geceleri.",
       summary:
-        "İki mühendislik öğrencisinin geliştirdiği sosyal etkinlik platformu: herkese açık ya da özel etkinlik oluştur, haritada keşfet, ilgi alanına göre filtrele.",
-      role: "İki kişilik ekip",
+        "Tek başıma geliştirdiğim sosyal etkinlik platformu: herkese açık ya da özel etkinlik oluştur, haritada keşfet, ilgi alanına göre filtrele.",
+      role: "Tek başıma",
       year: "2026",
       highlights: ["Harita üzerinden keşif", "Açık / özel etkinlikler", "İlgi alanı filtresi"],
       spec: [
@@ -678,10 +712,11 @@ export const PROJECTS: Project[] = [
     en: {
       tagline: "Run a laptop repair shop. Real faults, real screws.",
       summary:
-        "A browser game about running a small laptop repair shop. Read beep codes, enter the BIOS, undo screws one by one (some hide under a rubber foot), disconnect the battery first, repaste the CPU, order parts, print the invoice and grow the shop.",
+        "Made so people can understand what each part inside a computer actually does — by taking one apart. A browser game about running a small laptop repair shop: read beep codes, enter the BIOS, undo screws one by one (some hide under a rubber foot), disconnect the battery first, repaste the CPU, order parts, print the invoice and grow the shop.",
       role: "Solo — AFGame",
       year: "2026",
       highlights: [
+        "Built to teach: what the fan, RAM, SSD, CMOS cell or DC jack does, and what happens when it fails",
         "20 hardware and software faults, 10 laptop models",
         "Hands-on teardown in the real repair order",
         "Shop economy: parts, invoices, ledger, rent, reviews",
@@ -711,10 +746,11 @@ export const PROJECTS: Project[] = [
     tr: {
       tagline: "Bir laptop tamir dükkânı işlet. Gerçek arızalar, gerçek vidalar.",
       summary:
-        "Küçük bir laptop tamir dükkânı işlettiğin tarayıcı oyunu. Bip kodlarını oku, BIOS'a gir, vidaları tek tek sök (bazıları lastik ayağın altında), önce bataryayı çıkar, işlemcinin macununu yenile, parça sipariş et, faturayı yazdır ve dükkânı büyüt.",
+        "İnsanlar bilgisayarın içindeki her parçanın ne işe yaradığını, bir tanesini söküp takarak daha iyi anlasın diye yapıldı. Küçük bir laptop tamir dükkânı işlettiğin tarayıcı oyunu: bip kodlarını oku, BIOS'a gir, vidaları tek tek sök (bazıları lastik ayağın altında), önce bataryayı çıkar, işlemcinin macununu yenile, parça sipariş et, faturayı yazdır ve dükkânı büyüt.",
       role: "Tek başıma — AFGame",
       year: "2026",
       highlights: [
+        "Öğretmek için yapıldı: fan, RAM, SSD, CMOS pili ya da DC jak ne işe yarar, bozulunca ne olur",
         "20 donanım ve yazılım arızası, 10 laptop modeli",
         "Gerçek tamir sırasıyla elle söküm",
         "Dükkân ekonomisi: parça, fatura, defter, kira, yorumlar",
@@ -760,7 +796,12 @@ export const PROJECTS: Project[] = [
         "A short narrative thriller with multiple endings. AXE is going to be erased at 06:00 and says someone changed a safety report overnight; the model replacing it says AXE is lying. One self-contained HTML file — every sound procedurally generated with the Web Audio API.",
       role: "Solo — AFGame",
       year: "2026",
-      highlights: ["Multiple endings, English and Turkish", "No dependencies, no build step", "All audio procedurally generated"],
+      highlights: [
+        "Multiple endings, English and Turkish",
+        "AXE reads your own computer's clock and points out that it doesn't match the lab's — the story is set at 05:12, but the game knows what time it is where you are",
+        "No dependencies, no build step",
+        "All audio procedurally generated",
+      ],
       spec: [
         ["Genre", "Narrative thriller"],
         ["Endings", "Multiple"],
@@ -779,7 +820,12 @@ export const PROJECTS: Project[] = [
         "Birden çok sonu olan kısa bir gerilim/hikâye oyunu. AXE saat 06.00'da silinecek ve gece biri bir güvenlik raporunu değiştirmiş diyor; yerine geçecek model ise AXE'in yalan söylediğini söylüyor. Tek bir HTML dosyası — tüm sesler Web Audio API ile anlık üretiliyor.",
       role: "Tek başıma — AFGame",
       year: "2026",
-      highlights: ["Birden çok son, Türkçe ve İngilizce", "Bağımlılık yok, derleme yok", "Tüm sesler kodla üretiliyor"],
+      highlights: [
+        "Birden çok son, Türkçe ve İngilizce",
+        "AXE senin bilgisayarının saatini okuyup laboratuvarın saatiyle tutmadığını söylüyor — hikâye 05.12'de geçiyor ama oyun senin orada saatin kaç olduğunu biliyor",
+        "Bağımlılık yok, derleme yok",
+        "Tüm sesler kodla üretiliyor",
+      ],
       spec: [
         ["Tür", "Hikâye / gerilim"],
         ["Son", "Birden çok"],

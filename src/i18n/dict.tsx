@@ -56,6 +56,15 @@ const en = {
     replay: "↻ REPLAY IGNITION",
     builtBy: "DESIGNED & BUILT BY AHMET FURKAN GÖKTAŞ",
     fig: "FIG. 01 — A. F. GÖKTAŞ",
+    idTag: "ID · AFG-00",
+    idRows: [
+      ["ROLE", "Computer engineer"],
+      ["FOCUS", "Embedded · Automotive"],
+      ["STACK", "C · C++ · ESP32 · STM32"],
+      ["BASE", "Ankara, TR"],
+    ],
+    motto: "If it works, don't touch it.",
+    mottoBy: "— EVERY ENGINEER, EVENTUALLY",
 };
 
 const tr: typeof en = {
@@ -110,6 +119,15 @@ const tr: typeof en = {
     replay: "↻ GİRİŞİ TEKRARLA",
     builtBy: "TASARIM VE KOD: AHMET FURKAN GÖKTAŞ",
     fig: "ŞEK. 01 — A. F. GÖKTAŞ",
+    idTag: "KİMLİK · AFG-00",
+    idRows: [
+      ["ROL", "Bilgisayar mühendisi"],
+      ["ODAK", "Gömülü · Otomotiv"],
+      ["ARAÇLAR", "C · C++ · ESP32 · STM32"],
+      ["ÜS", "Ankara, TR"],
+    ],
+    motto: "Çalışıyorsa dokunma.",
+    mottoBy: "— HER MÜHENDİS, ER GEÇ",
 };
 
 export type Dict = typeof en;

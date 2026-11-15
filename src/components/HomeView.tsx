@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import ProjectVisual, { Marks } from "@/components/ProjectVisual";
 import { ARCHIVE, PROJECTS, TRACK_LABEL } from "@/data/projects";
@@ -65,24 +64,45 @@ export default function HomeView({ lang }: { lang: Lang }) {
               </span>
             </h1>
 
-            <figure className="after-intro relative mx-auto w-full max-w-[340px] lg:mx-0">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[4px] border border-line bg-panel">
-                <Image
-                  src="/profile.jpg"
-                  alt="Ahmet Furkan Göktaş"
-                  fill
-                  priority
-                  sizes="340px"
-                  className="object-cover object-[50%_30%] grayscale-[35%] contrast-[1.05] transition duration-700 hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/70 via-transparent to-transparent" />
+            <aside className="after-intro relative mx-auto w-full max-w-[340px] lg:mx-0" aria-label="ID">
+              <div className="relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[4px] border border-line bg-panel p-6">
+                <div className="grid-bg pointer-events-none absolute inset-0 opacity-70" />
+                <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(255,138,31,0.18),transparent_65%)]" />
                 <Marks />
+                <div className="relative flex items-center justify-between">
+                  <span className="mono text-[10px] tracking-[0.25em] text-signal">{t.idTag}</span>
+                  <span className="mono flex items-center gap-1.5 text-[10px] tracking-[0.2em] text-ink-3">
+                    <span className="blink text-ok">●</span> ONLINE
+                  </span>
+                </div>
+
+                <div className="relative">
+                  <div
+                    className="wide select-none text-[92px] font-black leading-none text-transparent"
+                    style={{ WebkitTextStroke: "1.5px rgba(236,233,227,0.85)" }}
+                  >
+                    AFG<span className="text-signal" style={{ WebkitTextStroke: "0" }}>.</span>
+                  </div>
+                  <dl className="mono mt-5 space-y-1.5 text-[11px]">
+                    {t.idRows.map(([k, v]) => (
+                      <div key={k} className="flex justify-between gap-3 border-b border-line/70 pb-1.5">
+                        <dt className="text-ink-3">{k}</dt>
+                        <dd className="text-right text-ink">{v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+
+                <blockquote className="relative">
+                  <p className="wide text-xl font-extrabold leading-tight text-ink">
+                    <span className="text-signal">“</span>
+                    {t.motto}
+                    <span className="text-signal">”</span>
+                  </p>
+                  <footer className="mono mt-2 text-[10px] tracking-[0.2em] text-ink-3">{t.mottoBy}</footer>
+                </blockquote>
               </div>
-              <figcaption className="mono mt-3 flex justify-between text-[10px] tracking-[0.2em] text-ink-3">
-                <span>{t.fig}</span>
-                <span>“MÜHENDİS”</span>
-              </figcaption>
-            </figure>
+            </aside>
           </div>
 
           <div className="after-intro mt-12 grid gap-10 md:mt-16 lg:grid-cols-[1fr_1fr]">
