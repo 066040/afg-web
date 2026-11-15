@@ -52,6 +52,7 @@ export const PROJECTS: Project[] = [
     links: [{ kind: "source", href: `${GH}/pixeltime` }],
     media: [
       { type: "image", src: "/work/pixeltime-watch.webp" },
+      { type: "image", src: "/work/pixeltime-diagram.webp" },
       { type: "image", src: "/work/pixeltime-pcb-front.webp" },
       { type: "image", src: "/work/pixeltime-pcb-back.webp" },
       { type: "image", src: "/work/pixeltime-layout.webp" },
@@ -80,6 +81,7 @@ export const PROJECTS: Project[] = [
       ],
       captions: [
         "PixelTime Watch prototype running on the bench",
+        "System diagram: watch to web",
         "PCB, 3D view — buttons, display connector, buzzer",
         "PCB, 3D view — ESP32-C3 module, USB-C and charging circuit",
         "PCB layout in KiCad",
@@ -88,6 +90,7 @@ export const PROJECTS: Project[] = [
       ],
       notes: [
         { title: "Prototype on the bench", text: "The firmware running on a 2.25\" bar-type TFT before the PCB: big pixel-font clock, the day carousel and a progress bar for the current session." },
+        { title: "From the wrist to the leaderboard", text: "The ESP32-C3 counts sessions and stores finished blocks even with no connection; the RTC keeps time on battery. When Wi-Fi is available (set up once through WiFiManager) it syncs the clock over NTP and sends the blocks, signed per device, to a Supabase function that accepts or rejects each one — so the web app's squares can't be faked." },
         { title: "Top side: the user interface", text: "Four tactile switches for minus / plus / OK and reset, the FPC connector for the display, a passive buzzer and the vibration motor driver — everything the user touches sits on this side." },
         { title: "Bottom side: brains and power", text: "ESP32-C3-MINI module with its antenna kept clear of copper, USB-C with ESD protection, TP4056 Li-ion charger with DW01A + FS8205 protection, a 3.3 V LDO and the RV-3028 RTC so time survives without Wi-Fi." },
         { title: "Routing", text: "Two-layer board routed in KiCad 10 with ground pours on both sides, mounting holes in each corner and the antenna area pushed to the edge for range." },
@@ -116,6 +119,7 @@ export const PROJECTS: Project[] = [
       ],
       captions: [
         "PixelTime Saat prototipi tezgâhta çalışırken",
+        "Sistem şeması: saatten web'e",
         "PCB, 3D görünüm — düğmeler, ekran konnektörü, buzzer",
         "PCB, 3D görünüm — ESP32-C3 modülü, USB-C ve şarj devresi",
         "KiCad'de PCB yerleşimi",
@@ -124,6 +128,7 @@ export const PROJECTS: Project[] = [
       ],
       notes: [
         { title: "Tezgâhta prototip", text: "PCB'den önce 2,25\" uzun TFT ekranda çalışan firmware: büyük piksel fontlu saat, gün kaydırması ve o anki oturumun ilerleme çubuğu." },
+        { title: "Bilekten sıralamaya", text: "ESP32-C3 oturumları sayıyor ve bağlantı yokken bile biten blokları saklıyor; RTC pil üzerinden saati tutuyor. Wi-Fi olunca (WiFiManager ile bir kez kurulur) saati NTP'den eşitliyor ve cihaza özel imzalanmış blokları Supabase'deki bir fonksiyona gönderiyor; fonksiyon her bloğu kabul ya da reddediyor — böylece web uygulamasındaki kareler sahte olamıyor." },
         { title: "Üst yüz: kullanıcı arayüzü", text: "Eksi / artı / OK ve reset için dört düğme, ekranın FPC konnektörü, pasif buzzer ve titreşim motoru sürücüsü — kullanıcının dokunduğu her şey bu yüzde." },
         { title: "Alt yüz: beyin ve güç", text: "Anteni bakırdan uzak tutulmuş ESP32-C3-MINI modülü, ESD korumalı USB-C, DW01A + FS8205 korumalı TP4056 Li-ion şarj devresi, 3,3 V LDO ve Wi-Fi olmadan da saati tutan RV-3028 RTC." },
         { title: "Yerleşim", text: "KiCad 10'da iki katmanlı kart; iki yüzde de toprak dolgusu, köşelerde montaj delikleri ve menzil için kenara itilmiş anten bölgesi." },
@@ -323,7 +328,7 @@ export const PROJECTS: Project[] = [
     track: "embedded",
     stack: ["Mega 2560 Pro", "SIM808", "C/C++", "Node.js", "HTTP"],
     links: [],
-    media: [],
+    media: [{ type: "image", src: "/work/scooter-diagram.webp" }],
     en: {
       tagline: "A Teltonika-style tracker for e-scooters, built at Devri Robotik.",
       summary:
@@ -340,6 +345,8 @@ export const PROJECTS: Project[] = [
         ["Modem", "SIM808 GSM/GPS"],
         ["Backend", "Node.js"],
       ],
+      captions: ['System diagram: from vehicle signals to the database'],
+      notes: [{ title: 'How the data travels', text: "The Mega 2560 Pro reads the scooter's headlight, lock and charge state, drives the SIM808 over UART with AT commands and builds the packet. The SIM808 adds GPS speed and location and sends it over GPRS through the operator's APN to a Node.js server, which validates it and writes it to the database." }],
     },
     tr: {
       tagline: "Elektrikli scooter'lar için Teltonika benzeri takip cihazı — Devri Robotik'te.",
@@ -357,6 +364,8 @@ export const PROJECTS: Project[] = [
         ["Modem", "SIM808 GSM/GPS"],
         ["Sunucu", "Node.js"],
       ],
+      captions: ['Sistem şeması: araç sinyallerinden veritabanına'],
+      notes: [{ title: 'Veri nasıl yol alıyor?', text: "Mega 2560 Pro scooter'ın far, kilit ve şarj durumunu okuyor, SIM808'i UART üzerinden AT komutlarıyla sürüyor ve paketi oluşturuyor. SIM808 GPS'ten hız ve konumu ekleyip veriyi operatörün APN'i üzerinden GPRS ile Node.js sunucusuna gönderiyor; sunucu da doğrulayıp veritabanına yazıyor." }],
     },
   },
   {
@@ -445,7 +454,7 @@ export const PROJECTS: Project[] = [
     track: "embedded",
     stack: ["C++", "RabbitMQ", "ChromaDB", "Ollama", "Docker"],
     links: [{ kind: "source", href: `${GH}/FactoryMind` }],
-    media: [],
+    media: [{ type: "image", src: "/work/factorymind-diagram.webp" }],
     en: {
       tagline: "Predictive maintenance: edge sensor to root cause in one pipeline.",
       summary:
@@ -462,6 +471,8 @@ export const PROJECTS: Project[] = [
         ["Broker", "RabbitMQ"],
         ["AI", "Local only"],
       ],
+      captions: ['System diagram: alarm to root cause'],
+      notes: [{ title: 'Alarm to root cause', text: 'A C++ edge sensor publishes critical readings as JSON over AMQP. RabbitMQ queues them so nothing is lost; a worker pulls each alarm, retrieves similar past cases from technician notes in ChromaDB and asks a local Qwen2.5 model through Ollama for the likely root cause and next steps.' }],
     },
     tr: {
       tagline: "Kestirimci bakım: sahadaki sensörden kök nedene tek hat.",
@@ -479,6 +490,8 @@ export const PROJECTS: Project[] = [
         ["Kuyruk", "RabbitMQ"],
         ["Yapay zekâ", "Sadece yerel"],
       ],
+      captions: ['Sistem şeması: alarmdan kök nedene'],
+      notes: [{ title: 'Alarmdan kök nedene', text: "C++ uç sensör kritik ölçümleri JSON olarak AMQP ile yayınlıyor. RabbitMQ bunları kayıpsız kuyruğa alıyor; bir işçi her alarmı çekip ChromaDB'deki teknisyen notlarından benzer eski vakaları buluyor ve Ollama üzerindeki yerel Qwen2.5 modelinden olası kök nedeni ve yapılacakları istiyor." }],
     },
   },
   {
