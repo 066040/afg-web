@@ -109,7 +109,7 @@ export default function ProjectDetail({ p, lang }: { p: Project; lang: Lang }) {
               <figure key={m.src} className="reveal">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] border border-line bg-panel">
                   {m.type === "image" ? (
-                    <Image src={m.src} alt={cap} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+                    <Image src={m.src} alt={cap} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-contain" />
                   ) : (
                     <video
                       src={m.src}
